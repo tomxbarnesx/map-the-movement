@@ -21,9 +21,9 @@ a {
 }
 
 .xPosition {
-	right: 1em;
-	top: 1em;
-	position: absolute;
+	right: 1.5em;
+	top: 1.5em;
+	position: fixed;
 	z-index: 10000;
 }
 
@@ -50,4 +50,12 @@ a {
 }
 .leaflet-bottom {
 	z-index: 500 !important;
+}
+
+@media (min-width: 768px) {
+	.xPosition {
+		right: 1em;
+		top: 1em;
+		position: absolute;
+	}
 }

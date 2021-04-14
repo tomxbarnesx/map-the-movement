@@ -19,3 +19,32 @@ a {
 .leaflet-container {
 	display: block !important;
 }
+
+.xPosition {
+	right: 1em;
+	top: 1em;
+	position: absolute;
+	z-index: 10000;
+}
+
+.cursorPointer {
+	cursor: pointer;
+}
+
+.fade-in-enter {
+  opacity: 0;
+}
+.fade-in-enter-active {
+  opacity: 1;
+  transition: opacity 400ms;
+}
+.fade-in-enter-done {
+  opacity: 1;
+}
+.fade-in-exit {
+  opacity: 1;
+}
+.fade-in-exit-active {
+  opacity: 0;
+  transition: opacity 400ms;
+}

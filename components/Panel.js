@@ -1,15 +1,53 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import SocialIcon from './SocialIcon.js'
 import styles from '../styles/Panel.module.css';
 // import {windowCheck} from '../../utilities/layoutFunctions.js';
 
 const Panel = ({data, setActive}) => {
-	
-	return (
-		<div style={{overflow: "hidden"}} className={styles.container}>
-			<h1>{data.name}</h1>
 
-			<p>{data.summary}</p>
+	const socials = data.socials.map((icon, i) => <SocialIcon key={`social-icon-${i}`} data={icon} />)
+
+
+	return (
+		<div style={{border: `8px double ${data.color}`}} className={styles.container}>
+			{
+				(data) ?
+					<>
+						{
+							//<div className={styles.headerTransparency}>
+						}
+							<div className="xPosition cursorPointer greyHaze" onClick={() => setActive(null)}>
+								<Image
+									src={'/x.svg'}
+									width={20}
+									height={20}
+								/>
+							</div>
+						{						
+							//</div>
+						}
+						<div className={styles.content}> 
+							<h1 style={{color: `${data.color}`}}>{data.name}</h1>
+							<div className={styles.socialContainer}>
+								{ socials }
+							</div>
+							<p>{data.summary}</p>
+							<div className={styles.buttonsContainer}>
+								{
+									(data.donate !== "") ? 
+										<div className={styles.buttonStyle}>
+											<a href={data.donateUrl} target="__blank" rel="noopener noreferral">
+												Donate 
+											</a>
+										</div>
+									: null
+								}
+							</div>
+						</div>	
+					</>
+				: null
+			}
 		</div>
 	)
 }

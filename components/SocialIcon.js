@@ -5,10 +5,10 @@ const SocialIcon = ({data}) => {
 		<div>
 			<a href={data.url} target="_blank" rel="noopener noreferrer">
 				<Image 
-					src={data.iconUrl}
-					width={30}
-					height={30}
-					alt={data.icon}
+					src={`/logos/${data.platform}.svg`}
+					width={25}
+					height={25}
+					alt={data.platform}
 				/>
 			</a>
 		</div>

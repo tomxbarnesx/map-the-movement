@@ -48,3 +48,6 @@ a {
   opacity: 0;
   transition: opacity 400ms;
 }
+.leaflet-bottom {
+	z-index: 500 !important;
+}

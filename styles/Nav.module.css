@@ -10,3 +10,219 @@
 	margin: .5em;
 	font-size: 1.5em;
 }
+
+.wholeNav.absolute {
+	position: absolute;
+}
+
+.homeF {
+	position: absolute;
+	width: 3.1em;
+	z-index: 1;
+	top: .5em;
+	left: .5em;
+}
+
+.bgCover {
+	position: fixed;
+	overflow: auto;
+	overflow-y: scroll;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 0vh;
+	background-color: #fff;
+	z-index: 0;
+	transition: height 350ms ease;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: 20;
+	filter: invert();
+}
+
+.reveal {
+	height: 100vh;
+	opacity: 1;
+	display: block;
+	pointer-events: auto;
+	visibility: visible;
+}
+
+.hamburgerShell {
+	margin: 0;
+	position: absolute;
+	overflow: hidden;
+	width: 70px;
+	height: 3em;
+    right: 0;
+	top: 0;
+	z-index: 20;
+}
+
+.top, .middle{
+	position: absolute;
+	width: 40px;
+	height: 4px;
+	background-color: white;
+	transition: all 450ms ease-in-out;
+	top: 20px;
+}
+
+.middle {
+	top: 35px;
+}
+
+.menu {
+	position: relative;
+	top: 10px;
+	color: black;
+	display: none;
+	margin-top: 60px;
+	text-decoration: none;
+	font-weight: 100;
+	font-size: 20px;
+	text-transform: uppercase;
+	color: #333;
+	padding: 4em;
+	height: 75vh;
+	width: 22em;
+    text-align: center;
+}
+
+.menu a li {
+	text-decoration: none!important;
+	padding-bottom: 10px;
+	margin-bottom: 12px;
+	border-bottom: 1px solid black;
+	list-style: none;
+	color: #555;
+	transition: all 150ms ease;
+}
+
+.menu a li:hover {
+	color: #CC2D2F;
+	padding-right: 3px;
+}
+
+.navTerms {
+	bottom: 0em;
+	font-size: 80%;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.navTerms a:hover {
+	color: #CC2D2F;
+	padding-right: 3px;
+}
+
+.menu a {
+	text-decoration: none;
+}
+
+.rotate {
+	transform: rotate(225deg);
+	-webkit-transform: rotate(225deg);
+	top: 30px;
+	background-color: #CC2D2F;
+	height: 2px;
+}
+
+.rotateBack {
+	transform: rotate(-225deg);
+	-webkit-transform: rotate(-225deg);
+	top: 30px;
+	background-color: #CC2D2F;
+	height: 2px;
+}
+
+.top {
+	-webkit-animation-delay: 100ms;
+}
+
+.middle {
+	-webkit-animation-delay: 250ms;
+}
+
+.bottom {
+	-webkit-animation-delay: 400ms;
+}
+
+.navSocials {
+	filter: invert(1);
+	position: absolute;
+	display: flex;
+	justify-content: space-evenly;
+	width: 10em;
+	left: 0;
+	right: 0;
+	margin: 1em auto;
+	filter: invert();
+}
+
+.navSignUp {
+	left: 5em;
+	position: absolute;
+	top: 1.08em;
+	border: 2px solid #847b7b75;
+	outline: none;
+	padding: .4em 1em;
+	font-size: 1em;
+	font-family: "Futura";
+	text-transform: uppercase;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+	/*background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 35%, rgb(45, 103, 115) 100%);*/
+}
+
+.gradientWaveBG {
+	background: #004D80;
+    /*background: linear-gradient(90deg, #cc2d2f, #cc7f2f);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite; */
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@media (min-width: 768px) {
+	.bgCover {
+		width: 45%;		
+		right: 0;
+		left: unset;
+		box-shadow: 0em 0em 0.4em;
+		overflow-y: unset;
+	}
+}
+
+@media (min-width: 1024px) {
+	.bgCover {
+		width: 40%;	
+	}
+}
+
+@media (min-width: 1224px) {
+	.bgCover {
+		width: 30%;	
+	}
+}

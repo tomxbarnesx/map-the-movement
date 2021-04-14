@@ -1,0 +1,23 @@
+.container {
+	position: absolute;
+	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
+	width: 100vw;
+	z-index: 10000;
+	background: black;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 0;
+}
+
+@media (min-width: 768px) {
+	.container {
+		width: 50vw;
+		height: 92vh;
+		height: calc(var(--vh, 1vh) * 91);
+		top: 9vh;
+		padding: 1em 3em;
+		overflow-y: scroll;
+	}
+}

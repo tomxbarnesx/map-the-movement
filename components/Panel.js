@@ -1,15 +1,21 @@
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SocialIcon from './SocialIcon.js'
 import styles from '../styles/Panel.module.css';
+import L from 'leaflet';
 // import {windowCheck} from '../../utilities/layoutFunctions.js';
 
 const Panel = ({data, setActive}) => {
+	const panelRef = useRef()
 
 	const socials = data.socials.map((icon, i) => <SocialIcon key={`social-icon-${i}`} data={icon} />)
+	
+	useEffect(() => {
+	    L.DomEvent.disableClickPropagation(panelRef.current);
+	});
 
 	return (
-		<div style={{border: `8px double ${data.color}`}} className={styles.container}>
+		<div  ref={panelRef} style={{border: `8px double ${data.color}`}} className={styles.container}>
 			{
 				(data) ?
 					<>

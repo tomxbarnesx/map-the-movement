@@ -29,6 +29,7 @@ function ChangeView({ center, zoom, active, mobile }) {
 	        duration: .5
 		});
 	}
+	console.log("MOVING!")
 	return null;
 }
 
@@ -70,8 +71,6 @@ function ReformMap(){
 	const handlePanel = (i) => {
 		setActive(i)
 		router.push('/', `/?org=${i}`, { shallow: true })
-		setCoords([movementMarkers[i].lat, movementMarkers[i].lng])
-		// map.setView([activeData.lat, activeData.lng], 4);
 		return null;
 	}
 	

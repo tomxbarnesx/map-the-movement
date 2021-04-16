@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@agility/content-fetch": "^1.1.1",
+    "axios": "^0.21.1",
     "leaflet": "^1.7.1",
     "next": "10.1.3",
     "react": "17.0.2",

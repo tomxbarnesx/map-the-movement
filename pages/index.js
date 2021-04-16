@@ -1,10 +1,11 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import dynamic from "next/dynamic";
+import {useMemo} from 'react';
 
 function ReformExperiments(){
-  const MapWithNoSSR = dynamic(() => import("../components/Map.js"), {
+  const MapWithNoSSR = useMemo(() => dynamic(() => import("../components/Map.js"), {
     ssr: false
-  });
+  }), []);
 
   return (
     <>

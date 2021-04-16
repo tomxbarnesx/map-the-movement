@@ -1,10 +1,15 @@
+import {useRouter} from 'next/router';
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, ZoomControl, useMapEvent } from 'react-leaflet';
-import Panel from './Panel.js'
-import movementMarkers from '../utilities/data/movementMarkers.js';
+import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
+import {useWindowSize} from '../utilities/layoutHooks.js';
 
-function ClickCatch({active, setActive}) {
+import { MapContainer, TileLayer, Marker, ZoomControl, useMapEvent, useMap } from 'react-leaflet';
+import Panel from './Panel.js'
+
+import movementMarkers from '../utilities/data/movementMarkers.js';
+
+function ClickClose({active, setActive}) {
 	const map = useMapEvent('click', () => {
 		if (active !== null) {
 			setActive(null)
@@ -13,12 +18,29 @@ function ClickCatch({active, setActive}) {
 	return null
 }
 
+function ChangeView({ center, zoom, active, mobile }) {
+	if (active !== null) {
+		console.log("MOVING!")
+		const map = useMap();
+		const adjustment = (mobile) ? 0 : 5;
+		const reCenter = [center[0], center[1] + adjustment]
+		map.flyTo(reCenter, 6, {
+	        animate: true,
+	        duration: .5
+		});
+	}
+	return null;
+}
+
 function ReformMap(){
+	const windowSize = useWindowSize()
 	const [active, setActive] = useState(null);
 	const [prevActive, setPrevActive] = useState(null);
-	const [lat] = useState(38.914295);
-	const [lng] = useState(-77.035144);
+	const [lat, setLat] = useState(38.914295);
+	const [lng, setLng] = useState(-77.035144);
+	const [coords, setCoords] = useState([38.914295,-77.035144]);
 	const [zoom] = useState(4);
+	const router = useRouter();
 	const mapStyle = {
 		width: '100%',
 		height: '100vh',
@@ -27,8 +49,15 @@ function ReformMap(){
 	}
 
 	useEffect(() => {
+		console.log("MOBILE", windowSize.width < 768)
+		// axios.get('https://api.aglty.io/146b4de6-u/fetch/en-us/list/orgs')
+	}, [])
+
+	useEffect(() => {
 		if (active !== null) {
 			setPrevActive(active)
+		} else {
+			router.push('/', undefined, { shallow: true })
 		}
 	}, [active])
 
@@ -38,13 +67,21 @@ function ReformMap(){
 		return () => document.documentElement.style.removeProperty('--vh');
 	}, [])
 
-	const markers = movementMarkers.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.latLng[0], mark.latLng[1]]} eventHandlers={{click: () => {setActive(i)}}}/> )
+	const handlePanel = (i) => {
+		setActive(i)
+		router.push('/', `/?org=${i}`, { shallow: true })
+		setCoords([movementMarkers[i].lat, movementMarkers[i].lng])
+		// map.setView([activeData.lat, activeData.lng], 4);
+		return null;
+	}
+	
+	const markers = movementMarkers.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.latLng[0], mark.latLng[1]]} eventHandlers={{click: () => {handlePanel(i)}}}/> )
 	const activeData = (active !== null) ? movementMarkers[active] : movementMarkers[prevActive]
 
 	return (
 		<>
 			<MapContainer 
-		        center={[lat, lng]} 
+		        center={coords} 
 		        zoom={zoom} 
 		        zoomControl={false}
 		        style={mapStyle}
@@ -56,7 +93,8 @@ function ReformMap(){
 		        	id='mapbox/dark-v10'
 		        	accessToken='pk.eyJ1IjoidG9teGJhcm5lc3giLCJhIjoiY2p1OTJsZDEwMXI1ajN5bzJ4NDhhNzVkcCJ9.EV4112N91Zp7z0tOS-bazg'
 		        />
-		        <ClickCatch active={active} setActive={setActive}/>
+		        <ClickClose active={active} setActive={setActive}/>
+		        <ChangeView active={active} mobile={windowSize.width < 768} center={coords} zoom={zoom}/>
 				{ markers }
 				<ZoomControl position="bottomleft" />
 	        </MapContainer>

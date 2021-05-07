@@ -1,0 +1,14 @@
+.portraitBlock {
+	width: 28vw;
+	margin: 2em;
+}
+
+.portraitBlock > p {
+	margin-top: 3em;
+}
+
+.portraitImgContainer {
+	width: 25vw;
+	height: 25vw;
+	margin: 0 auto;
+}

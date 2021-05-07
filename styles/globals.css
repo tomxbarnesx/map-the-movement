@@ -5,6 +5,7 @@ body {
   color: white;
   font-family: "Futura", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: black;
 }
 
 a {
@@ -16,19 +17,35 @@ a {
   box-sizing: border-box;
 }
 
-.leaflet-container {
-	display: block !important;
-}
-
 .xPosition {
 	right: 1.5em;
 	top: 1.5em;
 	position: fixed;
 	z-index: 10000;
 }
-
 .cursorPointer {
 	cursor: pointer;
+}
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.space-evenly {
+  justify-content: space-evenly;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
 }
 
 .fade-in-enter {
@@ -48,8 +65,28 @@ a {
   opacity: 0;
   transition: opacity 400ms;
 }
+.placeholderGradient {
+  width: 100%;
+  height: 100%;
+  background: rgba(124,124,133,1);
+  background: -moz-linear-gradient(top, rgba(124,124,133,1) 0%, rgba(170,170,184,0) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(124,124,133,1)), color-stop(100%, rgba(170,170,184,0)));
+  background: -webkit-linear-gradient(top, rgba(124,124,133,1) 0%, rgba(170,170,184,0) 100%);
+  background: -o-linear-gradient(top, rgba(124,124,133,1) 0%, rgba(170,170,184,0) 100%);
+  background: -ms-linear-gradient(top, rgba(124,124,133,1) 0%, rgba(170,170,184,0) 100%);
+  background: linear-gradient(to bottom, rgba(124,124,133,1) 0%, rgba(170,170,184,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c7c85', endColorstr='#aaaab8', GradientType=0 );
+}
+
+/* LEAFLET OVERRIDES */
+.leaflet-container {
+  display: block !important;
+}
+.leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated { 
+  will-change:auto !important; 
+}
 .leaflet-bottom {
-	z-index: 500 !important;
+  z-index: 500 !important;
 }
 
 @media (min-width: 768px) {
@@ -58,4 +95,9 @@ a {
 		top: 1em;
 		position: absolute;
 	}
+  .contentContainer {
+    width: 70em;
+    margin: 6em auto 0em;
+  }
+
 }

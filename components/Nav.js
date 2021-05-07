@@ -43,7 +43,11 @@ export default function Nav() {
 	
 	return (
 		<div className={styles.navContainer}>
-			<h1>#MapTheMovement</h1>
+			<Link href="/">
+				<a>
+					<h1>#MapTheMovement</h1>
+				</a>
+			</Link>
 			{
                 (windowCheck) ? 
 	                <div ref={navRef} className={styles.buttonContainer}>
@@ -54,9 +58,9 @@ export default function Nav() {
 	                            		<li>Home</li>
 	                            	</a>
 	                            </Link>
-	                            <Link href="/about/">
+	                            <Link href="/team/">
 	                            	<a onClick={() => setOpen(!open)}>
-	                            		<li>About</li>
+	                            		<li>Meet the Team</li>
 	                            	</a>
 	                            </Link>
 	                            <Link href="/contact/">

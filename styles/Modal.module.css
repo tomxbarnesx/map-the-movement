@@ -1,0 +1,115 @@
+/* MODAL & CONTENT */
+.modalPanel {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    z-index: 1001;
+    background: black;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modalContent {
+    margin: 5em 1em;
+}
+
+.headerGradientContainer{
+    z-index: -1;
+    width: 100%;
+    height: 19em;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+.headerImgPositioning {
+    object-fit: cover;
+    object-position: 50% 25%;
+    height: 19em;
+    width: 100%;
+}
+.blackTextMask{
+    background: black;
+    padding: .1em .5em;
+    margin-left: -.5em;
+}
+h1.blackTextMask{
+    font-size: 2.6em;
+    margin-bottom: 0em;
+    width: max-content;
+}
+
+
+/* MINIMIZED TRAY STYLES */
+.tray {
+    display: flex;
+    position: absolute;
+    bottom: 3vh;
+    right: 1em;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    z-index: 1001;
+}
+
+.modalIcon {
+    background-color: black;
+    font-size: 1.5em;
+    width: 50px;
+    height: 50px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 2px solid #acacac;
+}
+
+.foldableShare {
+    width: 50px;
+    height: 50px;
+    margin-top: .5em;
+    background-color: black;
+    border: 2px solid #acacac;
+    transition: width .75s, border-radius .75s;
+}
+
+.foldableShare.open {
+    width: 275px;
+}
+
+.learnMoreButton {
+    display: inline-block;
+    border: 2px white solid;
+    padding: .5em 1em;
+    color: white;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+@media screen and (min-width: 769px) {
+    .modalPanel {
+        top: 0;
+        bottom: 0;
+        width: 60em;
+        height: 90vh;
+        height: calc(var(--vh, 1vh) * 100);
+        left: 0;
+        right: 0;
+        margin: auto;
+        overflow: auto;
+    }
+    .modalContent {
+        margin: 11em 6em 1em;
+;
+    }
+}

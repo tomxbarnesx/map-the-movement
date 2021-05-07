@@ -59,7 +59,7 @@ const movementMarkers = [
 	},
 	{
 		name: "People's Program",
-		color: "rgba(97,193,229,1)",
+		color: "rgba(101, 49, 101, 1)",
 		city: "Oakland",
 		state: "California",
 		latLng: [37.8044, -122.2712],

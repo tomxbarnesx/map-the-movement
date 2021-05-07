@@ -2,54 +2,60 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import SocialIcon from './SocialIcon.js'
 import styles from '../styles/Panel.module.css';
-import L from 'leaflet';
-// import {windowCheck} from '../../utilities/layoutFunctions.js';
 
-const Panel = ({data, setActive}) => {
-	const panelRef = useRef()
-
-	const socials = data.socials.map((icon, i) => <SocialIcon key={`social-icon-${i}`} data={icon} />)
-	
+function colorBank(value) {
+	const ref = useRef();
 	useEffect(() => {
-	    L.DomEvent.disableClickPropagation(panelRef.current);
+		if (value) {
+			ref.current = value;
+		}
 	});
+	return ref.current;
+}
 
+const Panel = ({data, setActive, cyclePanels}) => {
+	const panelRef = useRef()
+	const colorKeeper = useRef()
+
+	const socialArray = ["url", "fb", "twitter", "instagram"];
+	const orgColor = colorBank((data) ? data.metadata.orgcolor : null)
+	
 	return (
-		<div  ref={panelRef} style={{border: `8px double ${data.color}`}} className={styles.container}>
+		<div  ref={panelRef} style={{border: `8px double ${orgColor}`}} className={styles.container}>
 			{
 				(data) ?
 					<>
 						<div className="xPosition cursorPointer greyHaze" onClick={() => setActive(null)}>
 							<Image
-								src={'/x.svg'}
+								src={'/icons/x.svg'}
 								width={20}
 								height={20}
 							/>
 						</div>
 						<div className={styles.content}> 
-							<h1 style={{color: `${data.color}`}}>{data.name}</h1>
+							<h1 style={{color: `${data.metadata.orgcolor}`}}>{data.title}</h1>
 							<div className={styles.pinLine}>
 								<Image
 									src={'/logos/pin.svg'}
 									width={20}
 									height={20}
 								/>
-								<p><em>{data.city}, {data.state}</em></p>
+								<p><em>{`${data.metadata.city}, `}{data.metadata.state}</em></p>
 							</div>
 							<div className={styles.socialContainer}>
-								{ socials }
+								{ socialArray.map((icon, i) => (data.metadata[icon]) ? <SocialIcon key={`social-icon-${i}`} data={data.metadata[icon]} platform={icon} /> : null) }
 							</div>
-							<p>{data.summary}</p>
+							<p>{data.metadata.summary}</p>
 							<div className={styles.buttonsContainer}>
 								<div className={styles.buttonStyle}>
-									<a href={data.donateUrl} target="__blank" rel="noopener noreferral">
+									<a href={data.metadata.donateurl} target="__blank" rel="noopener noreferral">
 										Signal Boost This Org 
 									</a>
 								</div>
 								{
 									(data.donate !== "") ? 
 										<div className={styles.buttonStyle}>
-											<a href={data.donateUrl} target="__blank" rel="noopener noreferral">
+											<a href={data.metadata.donateurl} target="__blank" rel="noopener noreferral">
 												Donate 
 											</a>
 										</div>
@@ -57,6 +63,21 @@ const Panel = ({data, setActive}) => {
 								}
 							</div>
 						</div>	
+						<div className={styles.toggleContainer}>
+							<Image 
+								width={24}
+								height={50}
+								src={'/icons/advance.svg'}
+								className={styles.rotate180}
+								onClick={() => cyclePanels(false)}
+							/>
+							<Image 
+								width={24}
+								height={50}
+								src={'/icons/advance.svg'}
+								onClick={() => cyclePanels(true)}
+							/>
+						</div>
 					</>
 				: null
 			}

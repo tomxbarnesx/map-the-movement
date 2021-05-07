@@ -76,6 +76,21 @@
 	padding: .5em 2em;
 }
 
+.toggleContainer {
+	position: absolute;
+	bottom: 1em;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	width: 90%;
+}
+
+.rotate180 {
+	transform: rotate(180deg);
+}
+
 @media (min-width: 768px) {
 	.container {
 		width: 35em;

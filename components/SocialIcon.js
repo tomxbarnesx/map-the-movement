@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
-const SocialIcon = ({data}) => {
-	const sizing = (data.platform === "www") ? 30 : 25
+const SocialIcon = ({data, platform}) => {
+	const sizing = (platform === "www") ? 30 : 25
 	return (
 		<div>
-			<a href={data.url} target="_blank" rel="noopener noreferrer">
+			<a href={data} target="_blank" rel="noopener noreferrer">
 				<Image 
-					src={`/logos/${data.platform}.svg`}
+					src={`/logos/${platform}.svg`}
 					width={sizing}
 					height={sizing}
 					alt={data.platform}

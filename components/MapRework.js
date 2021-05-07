@@ -1,19 +1,19 @@
 import {useRouter} from 'next/router';
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
-import {useWindowSize} from '../utilities/layoutHooks.js';
+import {useWindowSize, useVhResize} from '../utilities/layoutHooks.js';
 
 import { MapContainer, TileLayer, Marker, ZoomControl, useMapEvent, useMap } from 'react-leaflet';
 import Panel from './Panel.js'
 
-import movementMarkers from '../utilities/data/movementMarkers.js';
-
-function ClickClose({active, setActive}) {
+function ClickClose({active, setActive, modal, setModal}) {
 	const map = useMapEvent('click', () => {
 		if (active !== null) {
 			setActive(null)
-		}		
+		}
+		if (modal) {
+			setModal(null)
+		}
 	})
 	return null
 }
@@ -31,36 +31,40 @@ function ChangeView({ center, zoom, active, mobile }) {
 	return null;
 }
 
-function ReformMap(){
+function ReformMap({data, active, setActive, modal, setModal, slug}){
 	const windowSize = useWindowSize()
-	const [active, setActive] = useState(null);
-	const [prevActive, setPrevActive] = useState(null);
 	const [lat, setLat] = useState(38.914295);
 	const [lng, setLng] = useState(-77.035144);
-	const [coords, setCoords] = useState([38.914295,-77.035144]);
-	const [zoom] = useState(4);
+	const [coords, setCoords] = useState([38.914295,-95.035144]);
+	// *** SET A MOBILE OPTION!
+	// const [coords, setCoords] = useState([38.914295,-77.035144]);
+	const [zoom] = useState(5);
 	const router = useRouter();
 	const [map, setMap] = useState(null)
 	const mapStyle = {
 		width: '100%',
 		height: '100vh',
   		height: 'calc(var(--vh, 1vh) * 100)',
-		display: 'inline-block'
+		display: 'block'
 	}
+	const maxBounds = [
+	    [-100.499550, -167.276413], //Southwest
+	    [83.162102, -30.233040]  //Northeast
+	];
 
-	useEffect(() => {
-		console.log("MOBILE", windowSize.width < 768)
-		// axios.get('https://api.aglty.io/146b4de6-u/fetch/en-us/list/orgs')
-	}, [])
+	useVhResize()
 
 	useEffect(() => {
 		if (active !== null) {
-			// SAVE PREV
-			setPrevActive(active)
-			// CHANGE THE URL
-			router.push('/', `/${active}`, { shallow: true })
-		    const adjustment = (windowSize.width < 768) ? 0 : 5;
-			const reCenter = [movementMarkers[active].lat, movementMarkers[active].lng + adjustment];
+			// HANDLE THE URL CHANGE
+			if (slug) {
+				router.push('/[slug]', `${data[active].slug}`, {shallow: true})
+			} else {
+    			router.push('/', `${data[active].slug}`, { shallow: true })
+			}
+			// FLY TO THE SCENE
+		    const lngAdjustment = (windowSize.width < 768) ? data[active].metadata.lng : parseFloat(data[active].metadata.lng) + 5
+			const reCenter = [data[active].metadata.lat, lngAdjustment];
 			if (map) {
 				map.flyTo(reCenter, 6, {
 			        animate: true,
@@ -68,24 +72,26 @@ function ReformMap(){
 				});
 			}
 		} else {
-			router.push('/', undefined, { shallow: true })
+			// HANDLE THE URL CHANGE
+			if (slug) {
+				router.push('/[slug]', `home`, { shallow: true })
+			} else {
+				router.push('/', undefined, { shallow: true })
+			}
 		}
 	}, [active])
 
 	useEffect(() => {
-		let vh = window.innerHeight * 0.01;
-		document.documentElement.style.setProperty('--vh', `${vh}px`);
-		return () => document.documentElement.style.removeProperty('--vh');
-	}, [])
+		if (map && active) {
+			const reCenter = [data[active].metadata.lat, data[active].metadata.lng];
+			map.flyTo(reCenter, 6, {
+		        animate: true,
+		        duration: 1
+			});
+		}
+	}, [map])
 
-	// const handlePanelOpen = (i) => {
-	// 	setActive(i)
-	// 	router.push('/', `/?org=${i}`, { shallow: true })
-	// 	return null;
-	// }
-	
-	const markers = movementMarkers.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.latLng[0], mark.latLng[1]]} eventHandlers={{click: () => {setActive(i)}}}/> )
-	const activeData = (active !== null) ? movementMarkers[active] : movementMarkers[prevActive]
+	const markers = data.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {console.log(mark, i); setActive(i);}}}/> )
 
 	return (
 		<>
@@ -95,7 +101,9 @@ function ReformMap(){
 		        zoomControl={false}
 		        style={mapStyle}
 		        minZoom={3}
+		        maxZoom={9}
 		        whenCreated={(map) => setMap(map)}
+		       	maxBounds={maxBounds}
 		    >
 		    	<TileLayer
 		            attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a></a>'
@@ -103,20 +111,11 @@ function ReformMap(){
 		        	id='mapbox/dark-v10'
 		        	accessToken='pk.eyJ1IjoidG9teGJhcm5lc3giLCJhIjoiY2p1OTJsZDEwMXI1ajN5bzJ4NDhhNzVkcCJ9.EV4112N91Zp7z0tOS-bazg'
 		        />
-		        <ClickClose active={active} setActive={setActive}/>
+		        <ClickClose active={active} setActive={setActive} modal={modal} setModal={setModal} />
 {/*		        <ChangeView active={active} mobile={windowSize.width < 768} center={coords} zoom={zoom}/>
 */}				{ markers }
 				<ZoomControl position="bottomleft" />
 	        </MapContainer>
-	       	<CSSTransition 
-	       		in={(active !== null)} 
-	       		timeout={400}
-	       		unmountOnExit
-	       		classNames="fade-in-delay"
-	       	>
-	        	<Panel data={activeData} setActive={setActive} />
-	        </CSSTransition>
-
 		</>
 	)
 }

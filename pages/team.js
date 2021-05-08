@@ -5,7 +5,7 @@ import PortraitBlock from '../components/PortraitBlock.js';
 
 export default function Team({team}) {
 
-	const portraits = team.map((t, i) => <PortraitBlock key={`team-member-${i}`} i={i} data={t}/>);
+	const portraits = (team) ? team.map((t, i) => <PortraitBlock key={`team-member-${i}`} i={i} data={t}/>) : null;
 
 	return (
 		<>
@@ -28,7 +28,7 @@ export default function Team({team}) {
 	)
 }
 
-export async function getStaticProps(ctx) {
+export async function getServerSideProps(ctx) {
   const data = await bucket.getObjects({
     query: {
     	type: 'team-members'
@@ -39,7 +39,7 @@ export async function getStaticProps(ctx) {
   const team = await data.objects
   return {
     props: {
-    	team: []
+    	team: team || []
     }
   }
 }

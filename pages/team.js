@@ -39,7 +39,7 @@ export async function getStaticProps(ctx) {
   const team = await data.objects
   return {
     props: {
-    	team: team || []
+    	team: []
     }
   }
 }

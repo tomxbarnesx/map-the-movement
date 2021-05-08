@@ -1,12 +1,11 @@
 import Head from 'next/head';
 import bucket from "../lib/cosmic";
 import styles from '../styles/Team.module.css';
-
 import PortraitBlock from '../components/PortraitBlock.js';
 
 export default function Team({team}) {
 
-	const portraits = team.map((t, i) => <PortraitBlock key={`team-member-${i}`} i={i} data={t}/>)
+	const portraits = team.map((t, i) => <PortraitBlock key={`team-member-${i}`} i={i} data={t}/>);
 
 	return (
 		<>
@@ -40,7 +39,7 @@ export async function getStaticProps(ctx) {
   const team = await data.objects
   return {
     props: {
-    	team: team
+    	team: team || []
     }
   }
 }

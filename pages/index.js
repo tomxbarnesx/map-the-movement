@@ -6,11 +6,15 @@ import { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import bucket from "../lib/cosmic";
 import Panel from '../components/Panel.js'
-import TrayOverlays from '../components/TrayOverlays.js'
+import Modal from '../components/Modal.js'
+import ListView from '../components/ListView.js'
+
+import styles from '../styles/Map.module.css';
 
 export default function ReformExperiments({orgs}){
   const [active, setActive] = useState(null);
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [listOpen, setListOpen] = useState(false);
 
   const cyclePanels = (direction) => {
     if (direction) {
@@ -32,6 +36,13 @@ export default function ReformExperiments({orgs}){
     ssr: false
   }), []);
 
+  useEffect(() => {
+    if (sessionStorage.getItem('modalViewed') !== '1') {
+      setModal(true)
+      sessionStorage.setItem('modalViewed', "1");
+    }
+  }, [])
+
   const activeData = (active !== null) ? orgs[active] : null
 
   return (
@@ -44,7 +55,7 @@ export default function ReformExperiments({orgs}){
           crossOrigin=""/>
       </Head>
       <main id="map">
-        <MapNoSSR data={orgs} active={active} setActive={setActive} modal={modal} setModal={setModal}/>
+        <MapNoSSR data={orgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
         <CSSTransition 
           in={(active !== null)} 
           timeout={400}
@@ -53,7 +64,10 @@ export default function ReformExperiments({orgs}){
         >
           <Panel data={activeData} setActive={setActive} cyclePanels={cyclePanels}/>
         </CSSTransition>
-        <TrayOverlays modal={modal} setModal={setModal} />
+        <div className={styles.tray}>
+          <Modal modal={modal} setModal={setModal}/>
+          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={orgs}/>
+        </div>
       </main>
     </>
   )

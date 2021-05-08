@@ -16,7 +16,7 @@
 }
 
 .modalContent {
-    margin: 5em 1em;
+    margin: 11em 1em 4em;
 }
 
 .headerGradientContainer{
@@ -42,24 +42,16 @@
     margin-left: -.5em;
 }
 h1.blackTextMask{
-    font-size: 2.6em;
     margin-bottom: 0em;
     width: max-content;
 }
-
-
-/* MINIMIZED TRAY STYLES */
-.tray {
-    display: flex;
-    position: absolute;
-    bottom: 3vh;
-    right: 1em;
+.flexing {
+    margin-top: 2.5em;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    z-index: 1001;
+    align-items: center;
 }
 
+/* MINIMIZED TRAY STYLES */
 .modalIcon {
     background-color: black;
     font-size: 1.5em;
@@ -70,7 +62,6 @@ h1.blackTextMask{
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    border: 2px solid #acacac;
 }
 
 .foldableShare {
@@ -93,15 +84,70 @@ h1.blackTextMask{
     color: white;
     margin-bottom: 1em;
     text-transform: uppercase;
-    font-size: 1.5em;
+}
+.listContainer {
+    position: absolute;
+    z-index: 999;
+    width: 100vw;
+    background-color: black;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    right: -105vw;
+    top: -82vh;
+    -webkit-transition: left 600ms;
+    transition: all 600ms;
+    padding: 0em 2em 5em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: white black;
+}
+.listContainer.open {
+    right: -.5em;
 }
 
-@media screen and (min-width: 769px) {
+.listContainer > ul {
+    margin: 0;
+    padding-left: 0;
+}
+
+.listContainer > ul > li {
+    font-size: 130%;
+    list-style-type: none;
+    margin-bottom: .5em;
+    border-bottom: 1px solid white;
+    padding: 6px 0px;
+}
+.listContainer > ul > li:last-child {
+    border-bottom: unset;
+}
+.blackBar {
+    width: inherit;
+    height: 3.5em;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    left: -16px;
+}
+.flexing {
+    margin-top: unset;
+    flex-direction: unset;
+    align-items: unset;
+    flex-wrap: wrap;
+}
+
+.hideLeft {
+    display: none;
+}
+.hideRight {
+    display: inline-block;
+}
+
+@media screen and (min-width: 768px) {
     .modalPanel {
         top: 0;
         bottom: 0;
-        width: 60em;
-        height: 90vh;
+        width: 60vw;
+        height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
         left: 0;
         right: 0;
@@ -110,6 +156,69 @@ h1.blackTextMask{
     }
     .modalContent {
         margin: 11em 6em 1em;
-;
     }
+    h1.blackTextMask{
+        font-size: 2.6em;
+    }
+    .tray {
+        top: 4em;
+        bottom: unset;
+        left: -2px;
+        right: unset;
+    }
+    .learnMoreButton {
+        font-size: 1.5em; 
+    }
+    .listContainer {
+        width: 35em;
+        background-color: black;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);        
+        left: -35em;
+        top: -8vh;
+        transition: left 600ms;
+        padding: 0em 69px 5em;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-color: white black;
+    }
+    .listContainer.open {
+        left: 0vh;
+    }
+
+    .listContainer > ul {
+        margin: 0;
+        padding-left: 0;
+    }
+
+    .listContainer > ul > li {
+        font-size: 130%;
+        list-style-type: none;
+        margin-bottom: .5em;
+        border-bottom: 1px solid white;
+        padding: 6px 0px;
+    }
+    .listContainer > ul > li:last-child {
+        border-bottom: unset;
+    }
+    .blackBar {
+        width: inherit;
+        height: 3.5em;
+        background-color: black;
+        position: sticky;
+        top: 0;
+        left: -16px;
+    }
+    .flexing {
+        margin-top: unset;
+        flex-direction: unset;
+        align-items: unset;
+    }
+    .hideLeft {
+        display: inline-block;
+    }
+    .hideRight {
+        display: none;
+    }
+
 }

@@ -17,11 +17,20 @@ a {
   box-sizing: border-box;
 }
 
+main {
+  background-color: black;
+  position: relative;
+  overflow: hidden;
+}
+
 .xPosition {
 	right: 1.5em;
 	top: 1.5em;
 	position: fixed;
-	z-index: 10000;
+	z-index: 9999;
+}
+.xPosition.nonFixed {
+  position: absolute;
 }
 .cursorPointer {
 	cursor: pointer;
@@ -88,16 +97,68 @@ a {
 .leaflet-bottom {
   z-index: 500 !important;
 }
+.contentContainer {
+  margin: 4em auto;
+}
+.contentContainer > h1  {
+  text-align: center;
+  font-size: 2.5em;
+}
 
-@media (min-width: 768px) {
+/* FOOTER */
+footer > .contentWidth {
+  border-top: 2px white double;
+  font-size: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2em auto 1em;
+  width: 95%;
+  padding: 1em;
+}
+
+.footerLinkSpread {
+  margin-top: 1em; 
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  text-decoration: underline;
+}
+
+.copyright {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
 	.xPosition {
 		right: 1em;
 		top: 1em;
 		position: absolute;
 	}
   .contentContainer {
-    width: 70em;
+    width: 60em;
     margin: 6em auto 0em;
   }
+  .contentContainer > h1 {
+    font-size: 2.5em;
+    text-align: center;
+  }
+  footer > .contentWidth {
+    border-top: 2px white double;
+    font-size: 80%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2em;
+    width: 65%;
+  }
 
+  .footerLinkSpread {
+    margin-top: unset; 
+  }
+}
+
+@media (min-width: 1000px) {
+  .footerLinkSpread {
+    width: 50%;
+  }
 }

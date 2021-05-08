@@ -6,13 +6,16 @@ import {useWindowSize, useVhResize} from '../utilities/layoutHooks.js';
 import { MapContainer, TileLayer, Marker, ZoomControl, useMapEvent, useMap } from 'react-leaflet';
 import Panel from './Panel.js'
 
-function ClickClose({active, setActive, modal, setModal}) {
+function ClickClose({active, setActive, modal, setModal, listOpen, setListOpen}) {
 	const map = useMapEvent('click', () => {
 		if (active !== null) {
 			setActive(null)
 		}
 		if (modal) {
 			setModal(null)
+		}
+		if (listOpen) {
+			setListOpen(null)
 		}
 	})
 	return null
@@ -31,7 +34,7 @@ function ChangeView({ center, zoom, active, mobile }) {
 	return null;
 }
 
-function ReformMap({data, active, setActive, modal, setModal, slug}){
+function ReformMap({data, active, setActive, modal, setModal, listOpen, setListOpen, slug}){
 	const windowSize = useWindowSize()
 	const [lat, setLat] = useState(38.914295);
 	const [lng, setLng] = useState(-77.035144);
@@ -48,8 +51,8 @@ function ReformMap({data, active, setActive, modal, setModal, slug}){
 		display: 'block'
 	}
 	const maxBounds = [
-	    [-100.499550, -167.276413], //Southwest
-	    [83.162102, -30.233040]  //Northeast
+	    [-100.499550, -190.276413], //Southwest
+	    [83.162102, -28.233040]  //Northeast
 	];
 
 	useVhResize()
@@ -100,7 +103,7 @@ function ReformMap({data, active, setActive, modal, setModal, slug}){
 		        zoom={zoom} 
 		        zoomControl={false}
 		        style={mapStyle}
-		        minZoom={3}
+		        minZoom={4}
 		        maxZoom={9}
 		        whenCreated={(map) => setMap(map)}
 		       	maxBounds={maxBounds}
@@ -111,9 +114,8 @@ function ReformMap({data, active, setActive, modal, setModal, slug}){
 		        	id='mapbox/dark-v10'
 		        	accessToken='pk.eyJ1IjoidG9teGJhcm5lc3giLCJhIjoiY2p1OTJsZDEwMXI1ajN5bzJ4NDhhNzVkcCJ9.EV4112N91Zp7z0tOS-bazg'
 		        />
-		        <ClickClose active={active} setActive={setActive} modal={modal} setModal={setModal} />
-{/*		        <ChangeView active={active} mobile={windowSize.width < 768} center={coords} zoom={zoom}/>
-*/}				{ markers }
+		        <ClickClose active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen} />
+				{ markers }
 				<ZoomControl position="bottomleft" />
 	        </MapContainer>
 		</>

@@ -45,7 +45,9 @@ export default function Nav() {
 		<div className={styles.navContainer}>
 			<Link href="/">
 				<a>
-					<h1>#MapTheMovement</h1>
+					<div className={styles.navLogo}>
+						<h1 style={{width: "max-content"}}>#MapTheMovement</h1>
+					</div>
 				</a>
 			</Link>
 			{
@@ -55,12 +57,22 @@ export default function Nav() {
 	                        <ul className={styles.menu} style={menuStyles}>
 	                            <Link href="/">
 	                            	<a onClick={() => setOpen(!open)}>
-	                            		<li>Home</li>
+	                            		<li>The Map</li>
+	                            	</a>
+	                            </Link>
+	                            <Link href="/">
+	                            	<a onClick={() => setOpen(!open)}>
+	                            		<li>The Film</li>
 	                            	</a>
 	                            </Link>
 	                            <Link href="/team/">
 	                            	<a onClick={() => setOpen(!open)}>
-	                            		<li>Meet the Team</li>
+	                            		<li>The Team</li>
+	                            	</a>
+	                            </Link>
+	                            <Link href="/resources/">
+	                            	<a onClick={() => setOpen(!open)}>
+	                            		<li>Resources</li>
 	                            	</a>
 	                            </Link>
 	                            <Link href="/contact/">

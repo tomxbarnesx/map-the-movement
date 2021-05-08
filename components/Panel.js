@@ -49,7 +49,7 @@ const Panel = ({data, setActive, cyclePanels}) => {
 							<div className={styles.buttonsContainer}>
 								<div className={styles.buttonStyle}>
 									<a href={data.metadata.donateurl} target="__blank" rel="noopener noreferral">
-										Signal Boost This Org 
+										Share This Org 
 									</a>
 								</div>
 								{
@@ -68,12 +68,13 @@ const Panel = ({data, setActive, cyclePanels}) => {
 								width={24}
 								height={50}
 								src={'/icons/advance.svg'}
-								className={styles.rotate180}
+								className={`${styles.rotate180} cursorPointer`}
 								onClick={() => cyclePanels(false)}
 							/>
 							<Image 
 								width={24}
 								height={50}
+								className={`cursorPointer`}
 								src={'/icons/advance.svg'}
 								onClick={() => cyclePanels(true)}
 							/>

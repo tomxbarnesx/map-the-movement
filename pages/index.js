@@ -84,7 +84,7 @@ export async function getServerSideProps(ctx) {
   const organizations = await data.objects
   return {
     props: {
-      orgs: organizations
+      orgs: organizations || []
     }
   }
 }

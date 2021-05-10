@@ -13,10 +13,14 @@ import ListView from '../components/ListView.js'
 import styles from '../styles/Map.module.css';
 
 export default function MovementSlug({pageIndex, allOrgs}){
+  const router = useRouter();
+  // POTENTIALLY A CONSIDERATION TO ADDRESS LATER: !router.isFallback && ...
+  if (pageIndex === undefined || pageIndex === -1) {
+    return <ErrorPage statusCode={404} />
+  }
   const [active, setActive] = useState(pageIndex);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
-  const router = useRouter();
   
   const cyclePanels = (direction) => {
     if (direction) {
@@ -40,9 +44,6 @@ export default function MovementSlug({pageIndex, allOrgs}){
 
   const activeData = (active !== null) ? allOrgs[active] : null
   
-  if (!router.isFallback && (pageIndex === undefined || pageIndex === -1)) {
-    return <ErrorPage statusCode={404} />
-  }
   return (
     <>
       <Head>
@@ -84,7 +85,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const allSlugs = (await getAllSlugs("organizations")) || []
   return {
-    paths: allSlugs.map((slug) => `/${slug.slug}`),
+    paths: allSlugs.map((slug, i) => `/${slug.slug}`),
     fallback: true,
   }
 }

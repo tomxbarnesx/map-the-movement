@@ -11,7 +11,7 @@ function ListItem({data, setActive, i}){
 
 export default function ListView({data, listOpen, setListOpen, setActive}){
 	const vis = (listOpen) ? styles.open : '';
-	const listItems = data.map((li, i) => <ListItem key={`list-item-${i}`} data={li} setActive={setActive} i={i}/>);
+	const listItems = (data) ? data.map((li, i) => <ListItem key={`list-item-${i}`} data={li} setActive={setActive} i={i}/>) : null;
 
 	return (
 		<>

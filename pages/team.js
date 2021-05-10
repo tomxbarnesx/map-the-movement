@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import bucket from "../lib/cosmic";
+import { getAllObjects } from "../lib/cosmic";
 import styles from '../styles/Team.module.css';
 import PortraitBlock from '../components/PortraitBlock.js';
 
-export default function Team({team}) {
+export default function Team({allTeam}) {
 
-	const portraits = (team) ? team.map((t, i) => <PortraitBlock key={`team-member-${i}`} i={i} data={t}/>) : null;
+	const portraits = (allTeam) ? allTeam.map((t, i) => <PortraitBlock key={`team-member-${i}`} i={i} data={t}/>) : null;
 
 	return (
 		<>
@@ -29,17 +29,9 @@ export default function Team({team}) {
 }
 
 export async function getServerSideProps(ctx) {
-  const data = await bucket.getObjects({
-    query: {
-    	type: 'team-members'
-    },
-    sort: 'created_at',
-    props: 'slug,title,metadata'
-  })
-  const team = await data.objects
+  const allTeam = (await getAllObjects("team-members")) || []
+  console.log(allTeam)
   return {
-    props: {
-    	team: team || []
-    }
+    props: { allTeam },
   }
 }

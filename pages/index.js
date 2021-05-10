@@ -4,28 +4,28 @@ import {useMemo} from 'react';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import bucket from "../lib/cosmic";
+import { getAllObjects } from "../lib/cosmic";
 import Panel from '../components/Panel.js'
 import Modal from '../components/Modal.js'
 import ListView from '../components/ListView.js'
 
 import styles from '../styles/Map.module.css';
 
-export default function ReformExperiments({orgs}){
+export default function ReformExperiments({allOrgs}){
   const [active, setActive] = useState(null);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
 
   const cyclePanels = (direction) => {
     if (direction) {
-      if (active === orgs.length - 1) {
+      if (active === allOrgs.length - 1) {
         setActive(0)
       } else {
         setActive(a => a + 1)
       }     
     } else {
       if (active === 0) {
-        setActive(orgs.length - 1)
+        setActive(allOrgs.length - 1)
       } else {
         setActive(a => a - 1)
       } 
@@ -43,7 +43,7 @@ export default function ReformExperiments({orgs}){
     }
   }, [])
 
-  const activeData = (active !== null) ? orgs[active] : null
+  const activeData = (active !== null) ? allOrgs[active] : null
 
   return (
     <>
@@ -55,7 +55,7 @@ export default function ReformExperiments({orgs}){
           crossOrigin=""/>
       </Head>
       <main id="map">
-        <MapNoSSR data={orgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
+        <MapNoSSR data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
         <CSSTransition 
           in={(active !== null)} 
           timeout={400}
@@ -66,25 +66,16 @@ export default function ReformExperiments({orgs}){
         </CSSTransition>
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
-          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={orgs}/>
+          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
         </div>
       </main>
     </>
   )
 }
 
-
 export async function getServerSideProps(ctx) {
-  const data = await bucket.getObjects({
-    query: {
-      type: 'organizations'
-    },
-    props: 'slug,title,metadata'
-  })
-  const organizations = await data.objects
+  const allOrgs = (await getAllObjects("organizations")) || []
   return {
-    props: {
-      orgs: organizations || []
-    }
+    props: { allOrgs },
   }
 }

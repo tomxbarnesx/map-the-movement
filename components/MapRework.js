@@ -94,7 +94,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 		}
 	}, [map])
 
-	const markers = data.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {console.log(mark, i); setActive(i);}}}/> )
+	const markers = (data) ? data.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {console.log(mark, i); setActive(i);}}}/> ) : null;
 
 	return (
 		<>

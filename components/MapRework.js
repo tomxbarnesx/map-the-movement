@@ -68,6 +68,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 	];
 
 	useVhResize();
+	
 	useEffect(() => {
 		if (active !== null) {
 			// HANDLE THE URL CHANGE

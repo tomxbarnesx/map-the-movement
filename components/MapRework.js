@@ -1,10 +1,22 @@
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import {useWindowSize, useVhResize} from '../utilities/layoutHooks.js';
-
 import { MapContainer, TileLayer, Marker, ZoomControl, useMapEvent, useMap } from 'react-leaflet';
+import L from 'leaflet';
+
 import Panel from './Panel.js'
+
+const pinIcon = new L.Icon({
+    iconUrl: '/icons/marker4.svg',
+    iconRetinaUrl: '/icons/marker4.svg',
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(50, 50),
+});
 
 function ClickClose({active, setActive, modal, setModal, listOpen, setListOpen}) {
 	const map = useMapEvent('click', () => {
@@ -43,7 +55,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 	// const [coords, setCoords] = useState([38.914295,-77.035144]);
 	const [zoom] = useState(5);
 	const router = useRouter();
-	const [map, setMap] = useState(null)
+	const [map, setMap] = useState(null);
 	const mapStyle = {
 		width: '100%',
 		height: '100vh',
@@ -55,8 +67,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 	    [83.162102, -28.233040]  //Northeast
 	];
 
-	useVhResize()
-
+	useVhResize();
 	useEffect(() => {
 		if (active !== null) {
 			// HANDLE THE URL CHANGE
@@ -94,7 +105,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 		}
 	}, [map])
 
-	const markers = (data) ? data.map((mark, i) => <Marker key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {console.log(mark, i); setActive(i);}}}/> ) : null;
+	const markers = (data) ? data.map((mark, i) => <Marker icon={ pinIcon } key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {console.log(mark, i); setActive(i);}}}/> ) : null;
 
 	return (
 		<>
@@ -104,7 +115,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 		        zoomControl={false}
 		        style={mapStyle}
 		        minZoom={4}
-		        maxZoom={9}
+		        maxZoom={12}
 		        whenCreated={(map) => setMap(map)}
 		       	maxBounds={maxBounds}
 		    >

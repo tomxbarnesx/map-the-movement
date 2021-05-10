@@ -11,7 +11,7 @@ import ListView from '../components/ListView.js'
 
 import styles from '../styles/Map.module.css';
 
-export default function ReformExperiments({allOrgs}){
+export default function MovementRoot({allOrgs}){
   const [active, setActive] = useState(null);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);

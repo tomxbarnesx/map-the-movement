@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import dynamic from "next/dynamic";
+import ErrorPage from 'next/error';
 import {useMemo} from 'react';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
@@ -11,11 +12,12 @@ import ListView from '../components/ListView.js'
 
 import styles from '../styles/Map.module.css';
 
-export default function ReformExperiments({pageIndex, allOrgs}){
+export default function MovementSlug({pageIndex, allOrgs}){
   const [active, setActive] = useState(pageIndex);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
-
+  const router = useRouter();
+  
   const cyclePanels = (direction) => {
     if (direction) {
       if (active === allOrgs.length - 1) {
@@ -37,7 +39,10 @@ export default function ReformExperiments({pageIndex, allOrgs}){
   }), []);
 
   const activeData = (active !== null) ? allOrgs[active] : null
-
+  
+  if (!router.isFallback && (pageIndex === undefined || pageIndex === -1)) {
+    return <ErrorPage statusCode={404} />
+  }
   return (
     <>
       <Head>

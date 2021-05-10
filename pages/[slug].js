@@ -59,8 +59,8 @@ export default function ReformExperiments({pageIndex, allOrgs}){
         </CSSTransition>
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
-{/*          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
-*/}        </div>
+          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
+        </div>
       </main>
     </>
   )

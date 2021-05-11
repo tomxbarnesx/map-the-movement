@@ -18,7 +18,7 @@ const Panel = ({data, setActive, cyclePanels}) => {
 	const colorKeeper = useRef()
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
-	const orgColor = colorBank((data) ? data.metadata.orgcolor : null)
+	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
 	
 	return (
 		<div  ref={panelRef} style={{border: `8px double ${orgColor}`}} className={styles.container}>
@@ -33,14 +33,14 @@ const Panel = ({data, setActive, cyclePanels}) => {
 							/>
 						</div>
 						<div className={styles.content}> 
-							<h1 style={{color: `${data.metadata.orgcolor}`}}>{data.title}</h1>
+							<h1 style={{color: `${orgColor}`}}>{data.title}</h1>
 							<div className={styles.pinLine}>
 								<Image
 									src={'/logos/pin.svg'}
 									width={20}
 									height={20}
 								/>
-								<p><em>{`${data.metadata.city}, `}{data.metadata.state}</em></p>
+								<p><em>{(data.metadata.city) ? `${data.metadata.city}, ` : ''}{data.metadata.state}</em></p>
 							</div>
 							<div className={styles.socialContainer}>
 								{ socialArray.map((icon, i) => (data.metadata[icon]) ? <SocialIcon key={`social-icon-${i}`} data={data.metadata[icon]} platform={icon} /> : null) }

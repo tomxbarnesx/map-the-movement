@@ -15,6 +15,7 @@ a {
 
 * {
   box-sizing: border-box;
+  scrollbar-color: white black;
 }
 
 main {
@@ -47,6 +48,9 @@ main {
 .justify-center {
   justify-content: center;
 }
+.space-around {
+  justify-content: space-around;
+}
 .space-evenly {
   justify-content: space-evenly;
 }
@@ -56,6 +60,14 @@ main {
 .flex-row {
   flex-direction: row;
 }
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
 
 .fade-in-enter {
   opacity: 0;
@@ -74,6 +86,23 @@ main {
   opacity: 0;
   transition: opacity 400ms;
 }
+.fade-in-delay-enter {
+  opacity: 0;
+}
+.fade-in-delay-enter-active {
+  opacity: 1;
+  transition: opacity 400ms 400ms;
+}
+.fade-in-delay-enter-done {
+  opacity: 1;
+}
+.fade-in-delay-exit {
+  opacity: 1;
+}
+.fade-in-delay-exit-active {
+  opacity: 0;
+  transition: opacity 400ms 400ms;
+}
 .placeholderGradient {
   width: 100%;
   height: 100%;
@@ -87,6 +116,14 @@ main {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c7c85', endColorstr='#aaaab8', GradientType=0 );
 }
 
+.contentContainer {
+  margin: 4em auto;
+}
+.contentContainer > h1  {
+  text-align: center;
+  font-size: 2.5em;
+}
+
 /* LEAFLET OVERRIDES */
 .leaflet-container {
   display: block !important;
@@ -97,13 +134,99 @@ main {
 .leaflet-bottom {
   z-index: 500 !important;
 }
-.contentContainer {
-  margin: 4em auto;
+
+/* CHECKMARK ANIMATION */
+.checkmark-circle {
+  width: 100%;
+  -webkit-animation: stretch 0.3s 0.5s cubic-bezier(0.65, 0.25, 0.56, 0.96);
+          animation: stretch 0.3s 0.5s cubic-bezier(0.65, 0.25, 0.56, 0.96);
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  color: white;
+  -webkit-filter: contrast(200%);
+          filter: contrast(200%);
 }
-.contentContainer > h1  {
-  text-align: center;
-  font-size: 2.5em;
+.checkmark-circle circle,
+.checkmark-circle polyline {
+  fill: none;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
 }
+.checkmark-circle circle {
+  stroke-dasharray: 94.25;
+  stroke: currentcolor;
+  stroke-width: 3.5px;
+  -webkit-animation: dash-circle 0.4s cubic-bezier(0.65, 0.25, 0.56, 0.96) forwards;
+          animation: dash-circle 0.4s cubic-bezier(0.65, 0.25, 0.56, 0.96) forwards;
+}
+.checkmark-circle polyline {
+  stroke-width: 3.5px;
+  stroke-dasharray: 22.771367900227325;
+  -webkit-animation: dash-check 0.3s 0.5s cubic-bezier(0.65, 0.25, 0.56, 0.96) forwards;
+          animation: dash-check 0.3s 0.5s cubic-bezier(0.65, 0.25, 0.56, 0.96) forwards;
+  stroke: currentcolor;
+}
+
+@supports (display: grid) {
+  .checkmark-circle circle {
+    stroke-dashoffset: 94.25;
+  }
+  .checkmark-circle polyline {
+    stroke-dashoffset: 22.771367900227325;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes dash-circle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash-circle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes stretch {
+  25% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  75% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes stretch {
+  25% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  75% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/* END CHECKMARK */
+
 
 /* FOOTER */
 footer > .contentWidth {
@@ -128,6 +251,7 @@ footer > .contentWidth {
 .copyright {
   font-weight: bold;
 }
+/* END FOOTER */
 
 @media screen and (min-width: 768px) {
 	.xPosition {

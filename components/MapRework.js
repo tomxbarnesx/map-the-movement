@@ -33,19 +33,6 @@ function ClickClose({active, setActive, modal, setModal, listOpen, setListOpen})
 	return null
 }
 
-function ChangeView({ center, zoom, active, mobile }) {
-	if (active !== null && !mobile) {
-		const map = useMap();
-		const adjustment = (mobile) ? 0 : 5;
-		const reCenter = [center[0], center[1] + adjustment]
-		map.flyTo(reCenter, 6, {
-	        animate: true,
-	        duration: .5
-		});
-	}
-	return null;
-}
-
 function ReformMap({data, active, setActive, modal, setModal, listOpen, setListOpen, slug}){
 	const windowSize = useWindowSize()
 	const [lat, setLat] = useState(38.914295);
@@ -68,7 +55,7 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 	];
 
 	useVhResize();
-	
+
 	useEffect(() => {
 		if (active !== null) {
 			// HANDLE THE URL CHANGE
@@ -78,10 +65,10 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
     			router.push('/', `${data[active].slug}`, { shallow: true })
 			}
 			// FLY TO THE SCENE
-		    const lngAdjustment = (windowSize.width < 768) ? data[active].metadata.lng : parseFloat(data[active].metadata.lng) + 5
+		    const lngAdjustment = (windowSize.width < 768) ? data[active].metadata.lng : parseFloat(data[active].metadata.lng) + 2
 			const reCenter = [data[active].metadata.lat, lngAdjustment];
 			if (map) {
-				map.flyTo(reCenter, 6, {
+				map.flyTo(reCenter, 8, {
 			        animate: true,
 			        duration: 1
 				});
@@ -98,8 +85,10 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 
 	useEffect(() => {
 		if (map && active) {
-			const reCenter = [data[active].metadata.lat, data[active].metadata.lng];
-			map.flyTo(reCenter, 6, {
+			const lngAdjustment = (windowSize.width < 768) ? data[active].metadata.lng : parseFloat(data[active].metadata.lng) + 2
+			const reCenter = [data[active].metadata.lat, lngAdjustment];
+
+			map.flyTo(reCenter, 8, {
 		        animate: true,
 		        duration: 1
 			});

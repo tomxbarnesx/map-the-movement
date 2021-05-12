@@ -5,14 +5,10 @@ import styles from '../styles/Modal.module.css';
 
 export default function Modal({modal, setModal, children}) {
 
-	useEffect(() => {
-		console.log("HUh?")
-	}, [modal])
-
 	return (
 		<>
 			<div className={`${styles.modalIcon} cursorPointer`} onClick={() => setModal(m => !m)}>
-				i
+				🗒️
 			</div>
 			<CSSTransition 
 	       		in={modal} 
@@ -24,6 +20,7 @@ export default function Modal({modal, setModal, children}) {
 		       		<div className="xPosition nonFixed cursorPointer" onClick={() => setModal(false)}>
 						<Image
 							src={'/icons/x.svg'}
+							alt={"Tap the X to close"}
 							width={30}
 							height={30}
 						/>
@@ -49,6 +46,19 @@ export default function Modal({modal, setModal, children}) {
 									Explore the Map
 								</div>
 							</div>
+						</div>
+						<div className={styles.poweredBy}>
+							Powered by
+							<a target="_blank" rel="noopener noreferrer" href="https://frame.media/">
+								<div style={{marginLeft: ".4em"}}>
+									<Image 
+										src={"/logos/Frame_Media_logo_750_238.png"}
+										width={75}
+							            height={23.8}
+							            alt={"Frame logo"}
+									/>
+								</div>
+							</a>
 						</div>
 					</div>
 	       		</div>

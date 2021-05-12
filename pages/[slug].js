@@ -9,10 +9,11 @@ import { getSlugObjectAndMoreObjects, getAllSlugs } from "../lib/cosmic";
 import Panel from '../components/Panel.js'
 import Modal from '../components/Modal.js'
 import ListView from '../components/ListView.js'
+import FoldableShareModule from '../components/FoldableShareModule.js'
 
 import styles from '../styles/Map.module.css';
 
-export default function MovementSlug({pageIndex, allOrgs}){
+export default function SlugView({pageIndex, allOrgs}){
   const router = useRouter();
   // POTENTIALLY A CONSIDERATION TO ADDRESS LATER: !router.isFallback && ...
   if (pageIndex === undefined || pageIndex === -1) {
@@ -21,6 +22,7 @@ export default function MovementSlug({pageIndex, allOrgs}){
   const [active, setActive] = useState(pageIndex);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
+  const [shareUnfold, setShareUnfold] = useState(false);
   
   const cyclePanels = (direction) => {
     if (direction) {
@@ -52,7 +54,7 @@ export default function MovementSlug({pageIndex, allOrgs}){
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossOrigin=""/>
-        
+
       </Head>
       <main id="map">
         <MapNoSSR slug={true} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
@@ -67,6 +69,7 @@ export default function MovementSlug({pageIndex, allOrgs}){
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
           <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
+          <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
         </div>
       </main>
     </>
@@ -78,7 +81,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       pageIndex: (data.pageIndex !== -1) ? data.pageIndex : null,
-      allOrgs: data.orgs.objects || [],
+      allOrgs: data.orgs || [],
     },
   }
 }

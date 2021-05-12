@@ -5,7 +5,7 @@
     width: 100vw;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
-    z-index: 1001;
+    z-index: 9998;
     background: black;
     left: 0;
     right: 0;
@@ -51,7 +51,7 @@ h1.blackTextMask{
     align-items: center;
 }
 
-/* MINIMIZED TRAY STYLES */
+/* INNER TRAY STYLES */
 .modalIcon {
     background-color: black;
     font-size: 1.5em;
@@ -64,17 +64,42 @@ h1.blackTextMask{
     font-weight: bold;
 }
 
+.shareIcon {
+    width: 2em;
+    height: 2em;
+    margin: 1em;
+    position: relative;
+    background: black;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    border: 2px white solid;
+    cursor: pointer;
+    padding: .3em;
+}
+
+.shareIcon.marginPoint5 {
+    margin: .5em;
+}
+
+.innerShare {
+    width: 70px;
+    text-align: center;
+}
+
 .foldableShare {
     width: 50px;
     height: 50px;
-    margin-top: .5em;
     background-color: black;
-    border: 2px solid #acacac;
-    transition: width .75s, border-radius .75s;
+    transition: width .75s;
+    z-index: 999;
 }
 
 .foldableShare.open {
     width: 275px;
+}
+.shareModule {
+    width: inherit;
 }
 
 .learnMoreButton {
@@ -99,7 +124,6 @@ h1.blackTextMask{
     padding: 0em 2em 5em;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-color: white black;
 }
 .listContainer.open {
     right: -.5em;
@@ -128,6 +152,22 @@ h1.blackTextMask{
     top: 0;
     left: -16px;
 }
+.listViewSearch {
+    height: 60px;
+    width: 100%;
+    min-width: 100%;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #333333;
+    line-height: 1em;
+    font-family: "Futura", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 1.4em;
+}
+
 .flexing {
     margin-top: unset;
     flex-direction: unset;
@@ -140,6 +180,18 @@ h1.blackTextMask{
 }
 .hideRight {
     display: inline-block;
+}
+
+.poweredBy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    bottom: -4em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -155,16 +207,11 @@ h1.blackTextMask{
         overflow: auto;
     }
     .modalContent {
-        margin: 11em 6em 1em;
+        margin: 11em 6em 3em;
+        position: relative;
     }
     h1.blackTextMask{
         font-size: 2.6em;
-    }
-    .tray {
-        top: 4em;
-        bottom: unset;
-        left: -2px;
-        right: unset;
     }
     .learnMoreButton {
         font-size: 1.5em; 

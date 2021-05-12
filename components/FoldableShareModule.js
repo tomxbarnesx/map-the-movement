@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import share from '../../../images/detours/rp-reform-map/share.svg';
+import styles from '../styles/Modal.module.css';
 
-import Twitter from '../../../images/socials/twitter.svg';
-import Facebook from '../../../images/socials/facebook.svg';
-import Instagram from '../../../images/socials/instagram.svg';
-import Link from '../../../images/socials/link.svg';
+// import Twitter from '../../../images/socials/twitter.svg';
+// import Facebook from '../../../images/socials/facebook.svg';
+// import Instagram from '../../../images/socials/instagram.svg';
+// import Link from '../../../images/socials/link.svg';
 
-const ModifiedShareModule = ({icons, styles, options, children, setShareUnfold}) => {
+export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 	const [copied, setCopied] = useState(false);
 	
 	const copyToClipboard = () => {
@@ -32,7 +33,7 @@ const ModifiedShareModule = ({icons, styles, options, children, setShareUnfold})
 
 	const shareIconMapping = {
 		"Twitter": {
-			"icon": Twitter,
+			"icon": '/logos/twitter.svg',
 			"data": {
 				"href": `https://twitter.com/intent/tweet?url=${window.location}/?s-tr=567`,
 				"data-show-count": "false",
@@ -42,7 +43,7 @@ const ModifiedShareModule = ({icons, styles, options, children, setShareUnfold})
 			}
 		},
 		"Facebook": {
-			"icon": Facebook,
+			"icon": '/logos/fb.svg',
 			"data": {
 				"href": `https://www.facebook.com/sharer/sharer.php?u=${window.location}`,
 				"target": "_blank",
@@ -50,23 +51,20 @@ const ModifiedShareModule = ({icons, styles, options, children, setShareUnfold})
 			}
 		},
 		"Link": {
-			"icon": Link,
+			"icon": '/logos/link.svg',
 			"data": {
 				"onClick": copyToClipboard
 			}
 
 		},
-		"Instagram": Instagram,
 	}
 
 	const iconSpread = icons.map((icon, i) => {
-			const widthConsideration = (icon === "Link") ? "70%" : "100%";
 			const adjustmentStyles = (icon === "Link") ? {background: "black"} : {};
-			const adjustmentClasses = (options === "noGlow") ? "share-icon marginPoint5" : "share-icon marginPoint5 ring";
 			return (
 					<a key={`share-${icon}`} {...shareIconMapping[icon].data}>
-						<div style={adjustmentStyles} className={adjustmentClasses}>
-							<img width={widthConsideration} alt={`Share on ${icon}`} src={shareIconMapping[icon].icon} />
+						<div style={adjustmentStyles} className={`${styles.shareIcon} ${styles.marginPoint5}`}>
+							<img width="100%" alt={`Share on ${icon}`} src={shareIconMapping[icon].icon} />
 						</div>
 					</a>
 			)
@@ -74,22 +72,28 @@ const ModifiedShareModule = ({icons, styles, options, children, setShareUnfold})
 	)
 
 	return (
-		<div style={styles} className="share-module flex flex-col">
-			{ children }
-			<div className="flex flex-row pos-rel align-center">
-				<SwitchTransition>
-					<CSSTransition 
-						key={copied} 
-						timeout={300} 
-						classNames="fade-animate"
-					>	
-						{
-							(copied) ?
-								<div onClick={() => setShareUnfold(false)} className="innerShare copied-flag">Copied!</div>
-							: 	<div onClick={() => setShareUnfold(false)} className="innerShare">Share this interactive:</div>
-						}
-					</CSSTransition>
-				</SwitchTransition>
+		<div style={addStyles} className={`${styles.shareModule} flex flex-row space-around align-center`}>
+			<div className={`${styles.modalIcon} cursorPointer greyHaze`} onClick={() => setShareUnfold(false)}>
+				<Image
+					src={'/icons/x.svg'}
+					width={20}
+					height={20}
+				/>
+			</div>
+			<SwitchTransition>
+				<CSSTransition 
+					key={copied} 
+					timeout={300} 
+					classNames="fade-in"
+				>	
+					{
+						(copied) ?
+							<div onClick={() => setShareUnfold(false)} className={`${styles.innerShare} ${styles.copiedFlag}`}>Copied!</div>
+						: 	<div onClick={() => setShareUnfold(false)} className={styles.innerShare}>SHARE:</div>
+					}
+				</CSSTransition>
+			</SwitchTransition>
+			<div className="flex flex-row"> 
 				{iconSpread}
 			</div>
 		</div>
@@ -98,7 +102,7 @@ const ModifiedShareModule = ({icons, styles, options, children, setShareUnfold})
 
 const FoldableShareModule = ({shareUnfold, setShareUnfold}) => {
 	return (
-		<div className={`foldableShare ${(shareUnfold) ? 'open' : ''} flex align-center cursor-pointer justify-center`}>
+		<div className={`${styles.foldableShare} ${(shareUnfold) ? styles.open : ''} flex flex-end align-center cursorPointer`}>
 			<SwitchTransition>
     			<CSSTransition 
 		       		key={shareUnfold}
@@ -106,13 +110,13 @@ const FoldableShareModule = ({shareUnfold, setShareUnfold}) => {
 		       			appear: 300,
 		       			end: 300,
 		       		}}
-		       		classNames="fade-delay-animate"
+		       		classNames="fade-in-delay"
 		       	>
 					{
 						(shareUnfold) ?
-							<ModifiedShareModule setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]} options={"noGlow"}/>
+							<ShareContents setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]} options={"noGlow"}/>
 						:
-							<img onClick={() => setShareUnfold(true)} width="35px" src={share} />
+							<div className={`${styles.modalIcon} cursorPointer`} onClick={() => setShareUnfold(true)}>🔗</div>
 					}
 				</CSSTransition>
 			</SwitchTransition>
@@ -120,5 +124,7 @@ const FoldableShareModule = ({shareUnfold, setShareUnfold}) => {
 
 	)
 }
+
+/*<img onClick={() => setShareUnfold(true)} width="35px" src={share} />*/
 
 export default FoldableShareModule;

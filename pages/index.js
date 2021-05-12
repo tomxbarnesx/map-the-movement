@@ -5,16 +5,18 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { getAllObjects } from "../lib/cosmic";
-import Panel from '../components/Panel.js'
-import Modal from '../components/Modal.js'
-import ListView from '../components/ListView.js'
+import Panel from '../components/Panel.js';
+import Modal from '../components/Modal.js';
+import ListView from '../components/ListView.js';
+import FoldableShareModule from '../components/FoldableShareModule.js';
 
 import styles from '../styles/Map.module.css';
 
-export default function MovementRoot({allOrgs}){
+export default function RootView({allOrgs}){
   const [active, setActive] = useState(null);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
+  const [shareUnfold, setShareUnfold] = useState(false);
 
   const cyclePanels = (direction) => {
     if (direction) {
@@ -41,6 +43,11 @@ export default function MovementRoot({allOrgs}){
       setModal(true)
       sessionStorage.setItem('modalViewed', "1");
     }
+    // const sortTime = allOrgs.sort((a, b) => a.metadata.lng - b.metadata.lng)
+
+    // console.log("UNSORTED", allOrgs)
+    // console.log("SORTED", sortTime)
+
   }, [])
 
   const activeData = (active !== null) ? allOrgs[active] : null
@@ -67,6 +74,7 @@ export default function MovementRoot({allOrgs}){
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
           <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
+          <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
         </div>
       </main>
     </>

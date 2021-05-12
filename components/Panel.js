@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import SocialIcon from './SocialIcon.js'
+import ShareExpander from './ShareExpander.js'
 import styles from '../styles/Panel.module.css';
 
 function colorBank(value) {
@@ -14,8 +15,9 @@ function colorBank(value) {
 }
 
 const Panel = ({data, setActive, cyclePanels}) => {
-	const panelRef = useRef()
-	const colorKeeper = useRef()
+	const [shareExpand, setShareExpand] = useState(false);
+	const panelRef = useRef();
+	const colorKeeper = useRef();
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
@@ -47,13 +49,9 @@ const Panel = ({data, setActive, cyclePanels}) => {
 							</div>
 							<p>{data.metadata.summary}</p>
 							<div className={styles.buttonsContainer}>
-								<div className={styles.buttonStyle}>
-									<a href={data.metadata.donateurl} target="__blank" rel="noopener noreferral">
-										Share This Org 
-									</a>
-								</div>
+								<ShareExpander data={data} shareExpand={shareExpand} setShareExpand={setShareExpand} />
 								{
-									(data.donate !== "") ? 
+									(data.metadata.donateurl !== "") ? 
 										<div className={styles.buttonStyle}>
 											<a href={data.metadata.donateurl} target="__blank" rel="noopener noreferral">
 												Donate 

@@ -5,7 +5,7 @@
 	right: .5em;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: flex-start;
+    align-items: flex-end;
     z-index: 9996;
 }
 
@@ -16,5 +16,6 @@
 	    left: -2px;
 	    right: unset;
 	    z-index: 9998;
+	    align-items: flex-start;
 	}
 }

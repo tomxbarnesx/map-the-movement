@@ -35,14 +35,52 @@
 	margin-top: 14em;
 }
 
+
+/* CONTACT */
+.contactOptionContainer {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	margin: 2em auto;
+	flex-wrap: wrap;
+}
+
+.contactOptionContainer > a {
+	display: block;
+}
+
+.contactOption {
+	border: 4px solid white;
+	width: 8em;
+	height: 8em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1.5em;
+}
+
+.contactOption > h2 {
+	font-size: 90%;
+}
+
+.contactOption:hover {
+	background: #62616169;
+}
+
+.contactOption > h2 {
+	margin: .5em 0em 0em;
+}
+/* END CONTACT */
+
 @media screen and (min-width: 768px) {
 	.bio {
 		max-width: 19em;
 		margin-top: unset;
 	}
 	.portraitImgContainer {
-		width: 20em;
-		height: 24em;
+		width: 16em;
+		height: 21em;
 		bottom: 0;
 	}
 	.portraits {
@@ -64,5 +102,24 @@
 	.portraitImgContainer.rightAlign {
 		left: unset;
 		right: 0;
+	}
+	.contactOptionContainer {
+		width: 75%;
+	}
+	.contactOption {
+		border: 4px solid white;
+		width: 11em;
+		height: 11em;
+		margin: 1.5em;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.portraitImgContainer {
+		width: 20em;
+		height: 24em;
+	}
+	.contactOptionContainer {
+		width: 55%;
 	}
 }

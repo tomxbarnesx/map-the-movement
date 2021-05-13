@@ -28,13 +28,24 @@ main {
 	right: 1.5em;
 	top: 1.5em;
 	position: fixed;
-	z-index: 9999;
+	z-index: 9999;  
+  font-weight: bolder;
+  font-size: 2em;
 }
 .xPosition.mobileClose{
-  top: 4.5em;
+  right: 1em;
+  top: 1.65em;
 }
 .xPosition.nonFixed {
   position: absolute;
+}
+.xPosition.stickyFloat {
+  position: sticky;
+  float: right;
+}
+.xPosition.stickyFloat.mobileClose {
+  top: 1em;
+  right: 0;
 }
 .cursorPointer {
 	cursor: pointer;
@@ -69,6 +80,9 @@ main {
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
+}
+.invert {
+  filter: invert();
 }
 
 .fade-in-enter {
@@ -119,7 +133,10 @@ main {
 }
 
 .contentContainer {
-  margin: 4em auto;
+  margin: 5.5em auto 2em;
+}
+.contentContainer.withPadding {
+  padding: 0em 2em;
 }
 .contentContainer > h1  {
   text-align: center;
@@ -338,9 +355,21 @@ footer > .contentWidth {
 		top: 1em;
 		position: absolute;
 	}
+  .xPosition.stickyFloat {
+    position: absolute;
+    float: unset;
+  }
+  .xPosition.mobileClose{
+    top: 1em;
+  }
+  .xPosition.stickyFloat.mobileClose {
+    top: 1em;
+    right: 1em;
+  }
   .contentContainer {
-    width: 60em;
+    width: 100%;
     margin: 6em auto 0em;
+    min-height: 80vh;
   }
   .contentContainer > h1 {
     font-size: 2.5em;
@@ -352,16 +381,20 @@ footer > .contentWidth {
     display: flex;
     flex-direction: row;
     margin-top: 2em;
-    width: 65%;
+    width: 90%;
   }
 
   .footerLinkSpread {
     margin-top: unset; 
+     width: 50%;
   }
 }
 
 @media (min-width: 1000px) {
-  .footerLinkSpread {
-    width: 50%;
+  .contentContainer {
+    width: 60em;
   }
+  footer > .contentWidth {
+    width: 65%;
+  } 
 }

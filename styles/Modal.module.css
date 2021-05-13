@@ -120,7 +120,8 @@ h1.blackTextMask{
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     right: -105vw;
-    top: -82vh;
+/*    top: -82vh;*/  
+    top: -62vh;  
     -webkit-transition: left 600ms;
     transition: all 600ms;
     padding: 0em 2em 5em;
@@ -148,14 +149,10 @@ h1.blackTextMask{
     border-bottom: unset;
 }
 .blackBar {
-    width: inherit;
-    height: 3.5em;
-    background-color: black;
-    position: sticky;
-    top: 0;
-    left: -16px;
+    display: none
 }
 .listViewSearch {
+    margin-top: 1em;
     height: 60px;
     width: 100%;
     min-width: 100%;
@@ -247,7 +244,7 @@ h1.blackTextMask{
     .modalPanel {
         top: 0;
         bottom: 0;
-        width: 60vw;
+        width: 88vw;
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
         left: 0;
@@ -288,12 +285,13 @@ h1.blackTextMask{
     .listContainer.open {
         left: 0vh;
     }
-
+    .listViewSearch {
+        margin-top: 1em;
+    }
     .mainList {
         margin: 0;
         padding-left: 0;
     }
-
     .mainList > li {
         font-size: 130%;
         margin-bottom: .5em;
@@ -310,6 +308,7 @@ h1.blackTextMask{
         position: sticky;
         top: 0;
         left: -16px;
+        display: block;
     }
     .flexing {
         margin-top: unset;
@@ -322,5 +321,15 @@ h1.blackTextMask{
     .hideRight {
         display: none;
     }
+}
+@media screen and (min-width: 1000px) {
+    .modalPanel {
+        width: 75vw;
+    }
+}
 
+@media screen and (min-width: 1200px) {
+    .modalPanel {
+        width: 62vw;
+    }
 }

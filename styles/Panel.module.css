@@ -162,5 +162,7 @@
 	.content {
 		margin-bottom: 2em;	
 	}
-
+	.toggleContainer {
+		position: absolute;
+	}
 }

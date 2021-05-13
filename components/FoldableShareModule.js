@@ -29,7 +29,6 @@ export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 				setCopied(false)
 			}, 1000)
 		}
-		console.log("TRIGGERED?")
 	}, [copied, setCopied])
 
 	const shareIconMapping = {
@@ -75,11 +74,12 @@ export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 	return (
 		<div style={addStyles} className={`${styles.shareModule} flex flex-row space-around align-center`}>
 			<div className={`${styles.modalIcon} cursorPointer greyHaze`} onClick={() => setShareUnfold(false)}>
-				<Image
+				✕
+				{/*<Image
 					src={'/icons/x.svg'}
 					width={20}
 					height={20}
-				/>
+				/>*/}
 			</div>
 			<SwitchTransition>
 				<CSSTransition 

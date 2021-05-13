@@ -60,12 +60,13 @@ export default function ListView({data, handleListSelection, listOpen, setListOp
 			</div>
 			<div className={`${styles.listContainer} ${vis}`}>
 				<div className={styles.blackBar}/>
-				<div className="xPosition cursorPointer greyHaze" onClick={() => setListOpen(false)}>
-					<Image
+				<div className="xPosition mobileClose stickyFloat cursorPointer greyHaze" onClick={() => setListOpen(false)}>
+					✕
+					{/*<Image
 						src={'/icons/x.svg'}
 						width={20}
 						height={20}
-					/>
+					/>*/}
 				</div>
 				<input id="mainSearch" className={styles.listViewSearch} placeholder="Search for an organization..." onChange={(e) => setSearchValue(e.target.value)} value={searchValue}/>
 				<label htmlFor="mainSearch" style={{display: "none"}}>Search for an organization...</label>

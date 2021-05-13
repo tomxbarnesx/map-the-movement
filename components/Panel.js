@@ -37,11 +37,12 @@ const Panel = ({data, setActive, cyclePanels}) => {
 				(data) ?
 					<>
 						<div className="xPosition mobileClose cursorPointer greyHaze" onClick={() => setActive(null)}>
-							<Image
+							✕
+							{/*<Image
 								src={'/icons/x.svg'}
 								width={20}
 								height={20}
-							/>
+							/>*/}
 						</div>
 						<div className={styles.content}> 
 							<h1 style={{color: `${orgColor}`}}>{data.title}</h1>

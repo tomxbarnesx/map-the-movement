@@ -8,7 +8,7 @@ export default function Footer() {
 	return (
 		<>
 			{
-				(router.pathname === '/team') ?
+				(router.pathname === '/team' || router.pathname === '/contact-us') ?
 					<footer>
 						<div className="contentWidth">
 							<div className="copyright">
@@ -25,9 +25,9 @@ export default function Footer() {
 										The Team
 									</a>
 								</Link>
-								<Link href="/contact">
+								<Link href="/contact-us">
 									<a>
-										Contact Us
+										Contact
 									</a>
 								</Link>
 								<a target="_blank" rel="noopener noreferrer" href="https://app.termly.io/document/terms-of-use-for-website/46c34cde-9ba8-4481-bea6-73f5018877dd/">Terms of Service</a>

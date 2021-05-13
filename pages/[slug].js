@@ -50,7 +50,16 @@ export default function SlugView({pageIndex, allOrgs}){
     if (active && modal) {
       setActive(null)
     }
+    if (modal && listOpen) {
+      setListOpen(false)
+    }
   }, [modal])
+
+  useEffect(() => {
+    if (listOpen && modal) {
+      setModal(false)
+    }
+  }, [listOpen])
 
   const MapNoSSR = useMemo(() => dynamic(() => import("../components/MapRework.js"), {
     ssr: false

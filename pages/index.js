@@ -54,10 +54,19 @@ export default function RootView({allOrgs}){
   }, [])
 
   useEffect(() => {
-    if (active) {
+    if (active && modal) {
       setActive(null)
     }
+    if (modal && listOpen) {
+      setListOpen(false)
+    }
   }, [modal])
+
+  useEffect(() => {
+    if (listOpen && modal) {
+      setModal(false)
+    }
+  }, [listOpen])
 
   const activeData = (active !== null) ? allOrgs[active] : null
 
@@ -77,11 +86,11 @@ export default function RootView({allOrgs}){
         <meta property="og:title" content="#MapTheMovement" />
         <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
-{/*        <meta property="fb:app_id" content="2311483179121947" />
-*/}        
         <meta property="og:image" content="/images/map-the-movement-share_191_1.jpg" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
+        {/*        <meta property="fb:app_id" content="2311483179121947" />
+*/}        
       </Head>
       <main id="map">
         <MapNoSSR data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>

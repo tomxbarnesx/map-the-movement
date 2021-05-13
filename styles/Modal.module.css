@@ -236,15 +236,11 @@ h1.blackTextMask{
 }
 
 .poweredBy {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
     text-align: center;
-    bottom: -2em;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    margin-top: 1.3em;
 }
 
 @media screen and (min-width: 768px) {
@@ -262,6 +258,13 @@ h1.blackTextMask{
     .modalContent {
         margin: 11em 6em 3em;
         position: relative;
+    }
+    .poweredBy {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: -2em;
     }
     h1.blackTextMask{
         font-size: 2.6em;

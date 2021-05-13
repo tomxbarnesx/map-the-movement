@@ -92,14 +92,18 @@
 }
 
 .toggleContainer {
-	position: absolute;
+	position: fixed;
 	bottom: 1em;
+	bottom: calc(var(--vh, 1vh) * 2);
 	display: flex;
 	justify-content: space-between;
 	margin: 0 auto;
 	left: 0;
 	right: 0;
-	width: 90%;
+	width: 92%;
+}
+.toggleSizing {
+	font-size: 2.5em;
 }
 
 .rotate180 {

@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
-    z-index: 9998;
+    z-index: 9996;
 }
 
 @media screen and (min-width: 768px) {
@@ -15,5 +15,6 @@
 	    bottom: unset;
 	    left: -2px;
 	    right: unset;
+	    z-index: 9998;
 	}
 }

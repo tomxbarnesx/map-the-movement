@@ -31,13 +31,12 @@ const Panel = ({data, setActive, cyclePanels}) => {
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
-	console.log(orgColor)
 	return (
 		<div  ref={panelRef} style={{border: `8px double ${orgColor}`}} className={styles.container}>
 			{
 				(data) ?
 					<>
-						<div className="xPosition cursorPointer greyHaze" onClick={() => setActive(null)}>
+						<div className="xPosition mobileClose cursorPointer greyHaze" onClick={() => setActive(null)}>
 							<Image
 								src={'/icons/x.svg'}
 								width={20}
@@ -77,20 +76,22 @@ const Panel = ({data, setActive, cyclePanels}) => {
 							</div>
 						</div>	
 						<div className={styles.toggleContainer}>
-							<Image 
-								width={24}
-								height={50}
-								src={'/icons/advance.svg'}
-								className={`${styles.rotate180} cursorPointer`}
-								onClick={() => cyclePanels(false)}
-							/>
-							<Image 
-								width={24}
-								height={50}
-								className={`cursorPointer`}
-								src={'/icons/advance.svg'}
-								onClick={() => cyclePanels(true)}
-							/>
+							<div onClick={() => cyclePanels(false)} className={`${styles.toggleSizing} cursorPointer`}>❮</div>
+								{/*<Image 
+									width={24}
+									height={50}
+									src={'/icons/advance.svg'}
+									className={`${styles.rotate180} cursorPointer`}
+									onClick={() => cyclePanels(false)}
+								/>*/}
+							<div onClick={() => cyclePanels(true)} className={`${styles.toggleSizing} cursorPointer`}>❯</div>
+								{/*<Image 
+									width={24}
+									height={50}
+									className={`cursorPointer`}
+									src={'/icons/advance.svg'}
+									onClick={() => cyclePanels(true)}
+								/>*/}
 						</div>
 					</>
 				: null

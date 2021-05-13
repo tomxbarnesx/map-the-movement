@@ -75,12 +75,12 @@ export default function RootView({allOrgs}){
         <meta property="og:url" content="https://mapthemovement.com/" />
         <meta property="og:type" content="website" />        
         <meta property="og:title" content="#MapTheMovement" />
-       {/* <meta name="description" content="{{ story.description }}" />
-        <meta property="og:description" content="{{ story.description }}" />*/}
+        <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
+        <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
 {/*        <meta property="fb:app_id" content="2311483179121947" />
-*/}        <meta property="og:image" content="{{ story.poster_landscape.url }}" />
+*/}        
+        <meta property="og:image" content="/images/map-the-movement-share_191_1.jpg" />
         <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image" content="{% static 'amp_stories/frame_header.png' %}" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <main id="map">

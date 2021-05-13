@@ -15,6 +15,8 @@ export default function Team({allTeam}) {
 		        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
 		          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
 		          crossOrigin=""/>
+	        	<meta name="description" content="#MapTheMovement is an interactive project built by Frame and filmmakers, Chesley Brejanee and Erica Hawkins." />
+    			<meta property="og:description" content="#MapTheMovement is an interactive project built by Frame and filmmakers, Chesley Brejanee and Erica Hawkins." />
 	      	</Head>
 	      	<main>
 	      		<div className='contentContainer'>

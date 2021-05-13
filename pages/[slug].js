@@ -18,7 +18,7 @@ export default function SlugView({pageIndex, allOrgs}){
   const router = useRouter();
   // POTENTIALLY A CONSIDERATION TO ADDRESS LATER: !router.isFallback && ...
   if (pageIndex === undefined || pageIndex === -1) {
-    return <ErrorPage statusCode={404} />
+    return <div></div>
   }
   const [active, setActive] = useState(pageIndex);
   const [modal, setModal] = useState(false);
@@ -56,12 +56,12 @@ export default function SlugView({pageIndex, allOrgs}){
   return (
     <>
       <Head>
-        <title>Frame | Police Reform Experiments</title>
+        <title>{activeData.title} | #MapTheMovement</title>
         <link rel="icon" href="/frame.ico" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossOrigin=""/>
-
+        <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
       </Head>
       <main id="map">
         <MapNoSSR slug={true} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>

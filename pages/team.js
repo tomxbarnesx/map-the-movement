@@ -29,7 +29,7 @@ export default function Team({allTeam}) {
 }
 
 export async function getServerSideProps(ctx) {
-  const allTeam = (await getAllObjects("team-members")) || []
+  const allTeam = (await getAllObjects("team-members", "created_at")) || []
   return {
     props: { allTeam },
   }

@@ -10,6 +10,7 @@ import Panel from '../components/Panel.js'
 import Modal from '../components/Modal.js'
 import ListView from '../components/ListView.js'
 import FoldableShareModule from '../components/FoldableShareModule.js'
+import Randomizer from '../components/Randomizer.js';
 
 import styles from '../styles/Map.module.css';
 
@@ -39,6 +40,12 @@ export default function SlugView({pageIndex, allOrgs}){
       } 
     }
   }
+
+  useEffect(() => {
+    if (active && modal) {
+      setActive(null)
+    }
+  }, [modal])
 
   const MapNoSSR = useMemo(() => dynamic(() => import("../components/MapRework.js"), {
     ssr: false
@@ -70,6 +77,7 @@ export default function SlugView({pageIndex, allOrgs}){
           <Modal modal={modal} setModal={setModal}/>
           <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
           <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
+          <Randomizer length={allOrgs.length} setActive={setActive} />
         </div>
       </main>
     </>

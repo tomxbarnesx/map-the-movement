@@ -26,6 +26,13 @@ function ShareContents({icons, addStyles, options, setShareUnfold}) {
 		}
 	}, [copied, setCopied])
 
+	const populateTweet = () => {
+		setTimeout(() => {
+			const link = 'https://twitter.com/intent/tweet?text=I%E2%80%99m%20highlighting%20Raleigh%20PACT%2C%20an%20grassroots%20organization%20working%20to%20end%20police%20brutality%20in%20Raleigh%2C%20North%20Carolina.%0A%0ALearn%20more%20about%20their%20work%20here%3A%20%7BMAX%20LENGTH%20OF%20A%20BITLY%7D%0A%0AHighlight%20an%20organization%20near%20you%3A%C2%A0mapthemovement.com%0A%0A%23mapthemovementchallenge'
+			window.open(link, '_blank');
+		}, 200)
+	}
+
 	const shareIconMapping = {
 		"Twitter": {
 			"icon": '/logos/twitter.svg',
@@ -56,13 +63,19 @@ function ShareContents({icons, addStyles, options, setShareUnfold}) {
 
 	const iconSpread = icons.map((icon, i) => {
 			const adjustmentStyles = (icon === "Link") ? {background: "black"} : {};
-			if (icon !== "Link") {
+			if (icon === "Facebook") {
 				return ( 
 					<a key={`share-${icon}`} {...shareIconMapping[icon].data}>
 						<div style={adjustmentStyles} className={`${styles.shareIcon}`}>
 							<img width="100%" alt={`Share on ${icon}`} src={shareIconMapping[icon].icon} />
 						</div>
 					</a>
+				)
+			} else if (icon === "Twitter") {
+				return (
+					<div key={`share-${icon}`} onClick={() => populateTweet()} style={adjustmentStyles} className={`${styles.shareIcon}`}>
+						<img width="100%" alt={`Share on ${icon}`} src={shareIconMapping[icon].icon} />
+					</div>
 				)
 			} else {
 				return (

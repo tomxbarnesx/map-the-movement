@@ -62,12 +62,11 @@ main {
 }
 .unselectable {
     -moz-user-select: -moz-none;
-    -khtml-user-select: none;
+    -html-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
 }
-
 
 .fade-in-enter {
   opacity: 0;
@@ -124,6 +123,33 @@ main {
   font-size: 2.5em;
 }
 
+.tooltip {
+  position: absolute;
+  background-color: black;
+  text-transform: uppercase;
+  opacity: 0;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 200ms;
+  left: 5.5em;
+  padding: 1em;
+  display: inline-block;
+  font-size: .5em;
+  width: max-content;
+  pointer-events: none;
+}
+.tooltip:before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 10px 12px;
+  border-color: transparent black transparent transparent;
+  left: -20px;
+  top: 25%;
+}
+
+.tooltip.appear {
+  opacity: 1;
+}
 /* LEAFLET OVERRIDES */
 .leaflet-container {
   display: block !important;
@@ -134,6 +160,12 @@ main {
 .leaflet-bottom {
   z-index: 500 !important;
 }
+.leaflet-tile-container img {
+    width: 256.5px !important;
+    height: 256.5px !important;
+}
+/* END LEAFLET OVERIRDES */
+
 
 /* CHECKMARK ANIMATION */
 .checkmark-circle {

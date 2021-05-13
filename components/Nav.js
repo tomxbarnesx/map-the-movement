@@ -60,19 +60,12 @@ export default function Nav() {
 	                            		<li>The Map</li>
 	                            	</a>
 	                            </Link>
-	                            <Link href="/">
-	                            	<a onClick={() => setOpen(!open)}>
-	                            		<li>The Film</li>
-	                            	</a>
-	                            </Link>
+                            	<a href="https://frame.media/stories/raleigh-pact-part-i/?mtm=1" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(!open)}>
+                            		<li>The Film</li>
+                            	</a>
 	                            <Link href="/team/">
 	                            	<a onClick={() => setOpen(!open)}>
 	                            		<li>The Team</li>
-	                            	</a>
-	                            </Link>
-	                            <Link href="/resources/">
-	                            	<a onClick={() => setOpen(!open)}>
-	                            		<li>Resources</li>
 	                            	</a>
 	                            </Link>
 	                            <Link href="/contact/">

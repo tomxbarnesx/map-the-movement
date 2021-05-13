@@ -9,7 +9,7 @@
 	right: 0;
 	margin: auto;
 	top: 0;
-	border: 8px double rgba(97,193,229,1);
+	border: 8px double white;
 	overflow-y: auto;
 }
 
@@ -119,6 +119,30 @@
     cursor: pointer;
     padding: .3em;
 }
+
+.runByHeart {
+	position: absolute;
+	top: 1em;
+	left: 2em;
+	display: flex;
+	align-items: flex-start;
+}
+
+.heartIcon {
+	font-size: 1.5em;
+}
+
+.heartTooltip {
+	opacity: 0;
+	transition: opacity 600ms;
+	margin-left: 1em;
+	width: 80%;
+	display: inline-block;
+}
+.heartTooltip.vis {
+	opacity: 1;
+}
+
 
 @media (min-width: 768px) {
 	.container {

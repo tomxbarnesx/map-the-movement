@@ -70,8 +70,11 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 			if (map) {
 				map.flyTo(reCenter, 8, {
 			        animate: true,
-			        duration: 1
+			        duration: 1.3
 				});
+			}
+			if (modal) {
+				setModal(false)
 			}
 		} else {
 			// HANDLE THE URL CHANGE
@@ -90,12 +93,12 @@ function ReformMap({data, active, setActive, modal, setModal, listOpen, setListO
 
 			map.flyTo(reCenter, 8, {
 		        animate: true,
-		        duration: 1
+		        duration: 1.3
 			});
 		}
 	}, [map])
 
-	const markers = (data) ? data.map((mark, i) => <Marker icon={ pinIcon } key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {console.log(mark, i); setActive(i);}}}/> ) : null;
+	const markers = (data) ? data.map((mark, i) => <Marker icon={ pinIcon } key={`marker-${i}`} position={[mark.metadata.lat, mark.metadata.lng]} eventHandlers={{click: () => {setActive(i);}}}/> ) : null;
 
 	return (
 		<>

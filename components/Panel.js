@@ -14,14 +14,24 @@ function colorBank(value) {
 	return ref.current;
 }
 
+const TheHeart = () => {
+	const [heartHover, setHeartHover] = useState(false)
+	return (
+		<div className={styles.runByHeart}>
+			<span onMouseEnter={() => setHeartHover(true)} onMouseOut={() => setHeartHover(false)} className={`${styles.heartIcon} cursorPointer`}>❤️</span>
+			<small className={`${styles.heartTooltip} ${ (heartHover) ? styles.vis : '' }`}>This organization is run and/or founded by families of victims of police violence</small>				
+		</div>
+	)
+}
+
+
 const Panel = ({data, setActive, cyclePanels}) => {
 	const [shareExpand, setShareExpand] = useState(false);
 	const panelRef = useRef();
-	const colorKeeper = useRef();
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
-	
+	console.log(orgColor)
 	return (
 		<div  ref={panelRef} style={{border: `8px double ${orgColor}`}} className={styles.container}>
 			{
@@ -48,6 +58,11 @@ const Panel = ({data, setActive, cyclePanels}) => {
 								{ socialArray.map((icon, i) => (data.metadata[icon]) ? <SocialIcon key={`social-icon-${i}`} data={data.metadata[icon]} platform={icon} /> : null) }
 							</div>
 							<p>{data.metadata.summary}</p>
+							{
+								(data.metadata.run_by_families) ?
+									<TheHeart />
+								: null
+							}
 							<div className={styles.buttonsContainer}>
 								<ShareExpander data={data} shareExpand={shareExpand} setShareExpand={setShareExpand} />
 								{

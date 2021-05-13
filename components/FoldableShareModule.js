@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import Tooltip from '../components/Tooltip.js';
 import styles from '../styles/Modal.module.css';
 
 // import Twitter from '../../../images/socials/twitter.svg';
@@ -101,8 +102,10 @@ export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 }
 
 const FoldableShareModule = ({shareUnfold, setShareUnfold}) => {
+	const [tooltipVis, setTooltipVis] = useState(false)
+
 	return (
-		<div className={`${styles.foldableShare} ${(shareUnfold) ? styles.open : ''} flex flex-end align-center cursorPointer`}>
+		<div className={`${styles.foldableShare} ${(shareUnfold) ? styles.open : ''} flex flex-end align-center`}>
 			<SwitchTransition>
     			<CSSTransition 
 		       		key={shareUnfold}
@@ -116,7 +119,10 @@ const FoldableShareModule = ({shareUnfold, setShareUnfold}) => {
 						(shareUnfold) ?
 							<ShareContents setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]} options={"noGlow"}/>
 						:
-							<div className={`${styles.modalIcon} cursorPointer`} onClick={() => setShareUnfold(true)}>🔗</div>
+							<div className={styles.modalIcon}>
+								<span onClick={() => setShareUnfold(true)} onMouseEnter={() => setTooltipVis(true)} onMouseOut={() => setTooltipVis(false)} className="cursorPointer">🔗</span>
+								<Tooltip toolTitle={"Share"} vis={tooltipVis}/>
+							</div>
 					}
 				</CSSTransition>
 			</SwitchTransition>

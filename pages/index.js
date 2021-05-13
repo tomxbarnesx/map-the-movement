@@ -9,10 +9,12 @@ import Panel from '../components/Panel.js';
 import Modal from '../components/Modal.js';
 import ListView from '../components/ListView.js';
 import FoldableShareModule from '../components/FoldableShareModule.js';
+import Randomizer from '../components/Randomizer.js';
 
 import styles from '../styles/Map.module.css';
 
 export default function RootView({allOrgs}){
+  const router = useRouter()
   const [active, setActive] = useState(null);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
@@ -34,6 +36,11 @@ export default function RootView({allOrgs}){
     }
   }
 
+  const handleListSelection = (data) => {
+    const targetIndex = allOrgs.findIndex((el) => el.slug === data.slug)
+    setActive(targetIndex)
+  }
+
   const MapNoSSR = useMemo(() => dynamic(() => import("../components/MapRework.js"), {
     ssr: false
   }), []);
@@ -43,12 +50,14 @@ export default function RootView({allOrgs}){
       setModal(true)
       sessionStorage.setItem('modalViewed', "1");
     }
-    // const sortTime = allOrgs.sort((a, b) => a.metadata.lng - b.metadata.lng)
-
-    // console.log("UNSORTED", allOrgs)
-    // console.log("SORTED", sortTime)
-
+    router.replace(router.asPath);
   }, [])
+
+  useEffect(() => {
+    if (active) {
+      setActive(null)
+    }
+  }, [modal])
 
   const activeData = (active !== null) ? allOrgs[active] : null
 
@@ -57,9 +66,22 @@ export default function RootView({allOrgs}){
       <Head>
         <title>#MapTheMovement | Explore The Map</title>
         <link rel="icon" href="/frame.ico" />
+        <meta charSet="utf-8" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <link rel="shortcut icon" href="{% static 'amp_stories/frame.ico' %}"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossOrigin=""/>
+        <meta property="og:url" content="https://mapthemovement.com/" />
+        <meta property="og:type" content="website" />        
+        <meta property="og:title" content="#MapTheMovement" />
+       {/* <meta name="description" content="{{ story.description }}" />
+        <meta property="og:description" content="{{ story.description }}" />*/}
+{/*        <meta property="fb:app_id" content="2311483179121947" />
+*/}        <meta property="og:image" content="{{ story.poster_landscape.url }}" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image" content="{% static 'amp_stories/frame_header.png' %}" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
       </Head>
       <main id="map">
         <MapNoSSR data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
@@ -73,8 +95,9 @@ export default function RootView({allOrgs}){
         </CSSTransition>
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
-          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
+          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} handleListSelection={handleListSelection} data={allOrgs}/>
           <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
+          <Randomizer length={allOrgs.length} setActive={setActive} />
         </div>
       </main>
     </>

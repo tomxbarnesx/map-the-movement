@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 export default function SubmitForm({setListOpen}) {
 	const [title, setTitle] = useState('')
 	const [url, setUrl] = useState('')
-	const [donate, setDonate] = useState('')
-	const [email, setEmail] = useState('')
+	const [donateurl, setDonateurl] = useState('')
+	const [submitters_email, setSubmitters_email] = useState('')
 	const [summary, setSummary] = useState('')
 	const [sending, setSending] = useState(false)
 
@@ -15,13 +15,12 @@ export default function SubmitForm({setListOpen}) {
 		if (sending) {
 			if (title !== '' && url !== '') {
 				const dataPacket = {			
-					title: title, 
 					url: url, 
-					donate: donate, 
-					email: email,
+					donateurl: donateurl, 
+					submitters_email: submitters_email,
 					summary: summary
 				};
-				submitObject(dataPacket, setSending)
+				submitObject(dataPacket, title, setSending)
 			} else {
 				toast.error(`Please add a name and url for the organization!`, {
 			        position: "top-right",
@@ -54,11 +53,11 @@ export default function SubmitForm({setListOpen}) {
 				</div>
 				<div>
 					<label htmlFor="donate" style={{display: "none"}}>Donation link</label>
-					<input id="donate" className={styles.listViewSearch} placeholder="Donation link (optional)" onChange={(e) => setDonate(e.target.value)} value={donate}/>
+					<input id="donate" className={styles.listViewSearch} placeholder="Donation link (optional)" onChange={(e) => setDonateurl(e.target.value)} value={donateurl}/>
 				</div>
 				<div>
 					<label htmlFor="email" style={{display: "none"}}>Your Email</label>
-					<input id="email" type="email" className={styles.listViewSearch} placeholder="Your email (optional)" onChange={(e) => setEmail(e.target.value)} value={email}/>
+					<input id="email" type="email" className={styles.listViewSearch} placeholder="Your email (optional)" onChange={(e) => setSubmitters_email(e.target.value)} value={submitters_email}/>
 				</div>
 				<div>
 					<label htmlFor="summary" style={{display: "none"}}>Description (optional)</label>

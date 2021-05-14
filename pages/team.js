@@ -34,5 +34,6 @@ export async function getServerSideProps(ctx) {
   const allTeam = (await getAllObjects("team-members", "created_at")) || []
   return {
     props: { allTeam },
+    revalidate: 3600
   }
 }

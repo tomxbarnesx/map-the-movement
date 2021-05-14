@@ -106,6 +106,7 @@ export async function getStaticProps({ params }) {
       pageIndex: (data.pageIndex !== -1) ? data.pageIndex : null,
       allOrgs: data.orgs || [],
     },
+    revalidate: 3600
   }
 }
 

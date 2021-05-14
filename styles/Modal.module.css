@@ -109,6 +109,21 @@ h1.blackTextMask{
     color: white;
     margin-bottom: 1em;
     text-transform: uppercase;
+    background-color: black;
+    font-family: "Futura", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.learnMoreButton.centered {
+    margin: 2em auto 6em;
+    text-align: center;
+    display: block;
+    width: -webkit-max-content;
+    width: max-content;
+    font-size: 1em;       
+}
+.submitForm {
+    margin-top: 3.5em;
 }
 
 /* LIST VIEW */
@@ -121,7 +136,7 @@ h1.blackTextMask{
     height: calc(var(--vh, 1vh) * 100);
     right: -105vw;
 /*    top: -82vh;*/  
-    top: -62vh;  
+    top: -56vh;
     -webkit-transition: left 600ms;
     transition: all 600ms;
     padding: 0em 2em 5em;
@@ -166,6 +181,12 @@ h1.blackTextMask{
     line-height: 1em;
     font-family: "Futura", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 1.4em;
+}
+.listViewSearch.textArea {
+    height: 4em;
+    margin-top: 1.5em;
+    line-height: 1.25em;
+
 }
 /* END LIST VIEW */
 
@@ -269,6 +290,12 @@ h1.blackTextMask{
     .learnMoreButton {
         font-size: 1.25em; 
     }
+    .learnMoreButton.centered {
+        margin: 2em auto;
+    }
+    .submitForm {
+        margin-top: 0em;
+    }
     .listContainer {
         width: 35em;
         background-color: black;
@@ -287,6 +314,9 @@ h1.blackTextMask{
     }
     .listViewSearch {
         margin-top: 1em;
+    }
+    .listViewSearch.textArea {
+        height: 8em;
     }
     .mainList {
         margin: 0;

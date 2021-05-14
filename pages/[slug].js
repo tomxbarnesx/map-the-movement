@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import { getSlugObjectAndMoreObjects, getAllSlugs } from "../lib/cosmic";
 import Panel from '../components/Panel.js'
 import Modal from '../components/Modal.js'
-import ListView from '../components/ListView.js'
+import ListPanel from '../components/ListPanel.js'
 import FoldableShareModule from '../components/FoldableShareModule.js'
 import Randomizer from '../components/Randomizer.js';
 
@@ -90,7 +90,7 @@ export default function SlugView({pageIndex, allOrgs}){
         </CSSTransition>
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
-          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
+          <ListPanel listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
           <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
           <Randomizer length={allOrgs.length} setActive={setActive} />
         </div>

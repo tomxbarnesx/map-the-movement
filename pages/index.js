@@ -7,9 +7,10 @@ import { CSSTransition } from 'react-transition-group';
 import { getAllObjects } from "../lib/cosmic";
 import Panel from '../components/Panel.js';
 import Modal from '../components/Modal.js';
-import ListView from '../components/ListView.js';
+import ListPanel from '../components/ListPanel.js';
 import FoldableShareModule from '../components/FoldableShareModule.js';
 import Randomizer from '../components/Randomizer.js';
+import AddOrgButton from '../components/AddOrgButton.js';
 
 import styles from '../styles/Map.module.css';
 
@@ -104,9 +105,10 @@ export default function RootView({allOrgs}){
         </CSSTransition>
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
-          <ListView listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} handleListSelection={handleListSelection} data={allOrgs}/>
-          <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
+          <ListPanel listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} handleListSelection={handleListSelection} data={allOrgs}/>
           <Randomizer length={allOrgs.length} setActive={setActive} />
+          <AddOrgButton setListOpen={setListOpen}/>
+          <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
         </div>
       </main>
     </>

@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import {useState, useEffect} from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from '../styles/Modal.module.css';
 import Tooltip from '../components/Tooltip.js';
+import SubmitForm from '../components/SubmitForm.js';
 import throttle from "lodash/throttle";
 
 function ListItem({data, handleListSelection, i}){
@@ -22,7 +24,7 @@ function CheckBox({id, value, setValue}){
 	)			  
 }
 
-export default function ListView({data, handleListSelection, listOpen, setListOpen}){
+export default function ListPanel({data, handleListSelection, listOpen, setListOpen}){
 	const [tooltipVis, setTooltipVis] = useState(false)
 	const [familyRun, setFamilyRun] = useState(false)
 	const [bailFund, setBailFund] = useState(false)
@@ -55,7 +57,7 @@ export default function ListView({data, handleListSelection, listOpen, setListOp
 	return (
 		<>
 			<div className={styles.modalIcon}>
-				<span className='cursorPointer' onClick={() => setListOpen(l => !l)} onMouseEnter={() => setTooltipVis(true)} onMouseOut={() => setTooltipVis(false)}>🔍</span>
+				<span className='cursorPointer' onClick={() => setListOpen(l => (l === 1) ? 0 : 1)} onMouseEnter={() => setTooltipVis(true)} onMouseOut={() => setTooltipVis(false)}>🔍</span>
 				<Tooltip toolTitle={"Search / List View"} vis={tooltipVis}/>
 			</div>
 			<div className={`${styles.listContainer} ${vis}`}>
@@ -68,14 +70,34 @@ export default function ListView({data, handleListSelection, listOpen, setListOp
 						height={20}
 					/>*/}
 				</div>
-				<input id="mainSearch" className={styles.listViewSearch} placeholder="Search for an organization..." onChange={(e) => setSearchValue(e.target.value)} value={searchValue}/>
-				<label htmlFor="mainSearch" style={{display: "none"}}>Search for an organization...</label>
-				<ul className={styles.checkboxList}>
-				  { [["Bail funds and legal aid organizations", bailFund, setBailFund], ["Organizations run and/or founded by families of victims of police violence", familyRun, setFamilyRun]].map((box, i) => <CheckBox key={`check-${i}`} id={box[0]} value={box[1]} setValue={box[2]} />) }
-				</ul>
-				<ul className={styles.mainList} style={{marginTop: "2em"}}>
-					{ listItems }
-				</ul>
+				<SwitchTransition>
+    				<CSSTransition 
+			       		key={listOpen}
+			       		timeout={400}
+			       		classNames="fade-in"
+			       	>	
+			       		<>
+							{
+								(listOpen === 1) ?
+									<div>
+										<input id="mainSearch" className={styles.listViewSearch} placeholder="Search for an organization..." onChange={(e) => setSearchValue(e.target.value)} value={searchValue}/>
+										<label htmlFor="mainSearch" style={{display: "none"}}>Search for an organization...</label>
+										<ul className={styles.checkboxList}>
+										  { [["Bail funds and legal aid organizations", bailFund, setBailFund], ["Organizations run and/or founded by families of victims of police violence", familyRun, setFamilyRun]].map((box, i) => <CheckBox key={`check-${i}`} id={box[0]} value={box[1]} setValue={box[2]} />) }
+										</ul>
+										<ul className={styles.mainList} style={{marginTop: "2em"}}>
+											{ listItems }
+										</ul>
+									</div>
+								: (listOpen === 2) ?
+									
+										<SubmitForm setListOpen={setListOpen}/>
+									
+								: null
+							}
+						</>
+					</CSSTransition>
+				</SwitchTransition>
 			</div>
 		</>
 	)

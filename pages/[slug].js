@@ -11,6 +11,7 @@ import Modal from '../components/Modal.js'
 import ListPanel from '../components/ListPanel.js'
 import FoldableShareModule from '../components/FoldableShareModule.js'
 import Randomizer from '../components/Randomizer.js';
+import AddOrgButton from '../components/AddOrgButton.js';
 
 import styles from '../styles/Map.module.css';
 
@@ -44,6 +45,11 @@ export default function SlugView({pageIndex, allOrgs}){
         setActive(a => a - 1)
       } 
     }
+  }
+
+  const handleListSelection = (data) => {
+    const targetIndex = allOrgs.findIndex((el) => el.slug === data.slug)
+    setActive(targetIndex)
   }
 
   useEffect(() => {
@@ -90,9 +96,10 @@ export default function SlugView({pageIndex, allOrgs}){
         </CSSTransition>
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
-          <ListPanel listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} data={allOrgs}/>
-          <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
+          <ListPanel listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} handleListSelection={handleListSelection} data={allOrgs}/>
           <Randomizer length={allOrgs.length} setActive={setActive} />
+          <AddOrgButton setListOpen={setListOpen}/>
+          <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
         </div>
       </main>
     </>

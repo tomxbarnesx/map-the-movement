@@ -90,7 +90,6 @@ export default function RootView({allOrgs}){
         <meta property="og:image" content="/images/map-the-movement-share_191_1.jpg" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <script async src="https://platform.twitter.com/widgets.js" />
         {/*        <meta property="fb:app_id" content="2311483179121947" />
 */}        
       </Head>

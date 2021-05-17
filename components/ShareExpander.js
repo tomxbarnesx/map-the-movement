@@ -4,7 +4,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from '../styles/Panel.module.css';
 // import { ShareContents } from '../components/FoldableShareModule';
 
-function ShareContents({icons, addStyles, options, setShareUnfold}) {
+function ShareContents({data, icons, addStyles, options, setShareUnfold}) {
 	const [copied, setCopied] = useState(false);
 	
 	const copyToClipboard = () => {
@@ -37,7 +37,7 @@ function ShareContents({icons, addStyles, options, setShareUnfold}) {
 		"Twitter": {
 			"icon": '/logos/twitter.svg',
 			"data": {
-				"href": `https://twitter.com/intent/tweet?url=${window.location}/?s-tr=567`,
+				"href": `https://twitter.com/intent/tweet?text=${data.share_text}%0A%0ASupport%20their%20work%20here%3A%20${data.bitly_url}%0A%0AAmplify%20an%20organization%20near%20you%3A%20http%3A%2F%2Fmapthemovement.com%0A%0A%23mapthemovementchallenge`,
 				"data-show-count": "false",
 				"data-url": `${window.location}/?s-tr=567s`,
 				"target": "_blank",
@@ -73,9 +73,11 @@ function ShareContents({icons, addStyles, options, setShareUnfold}) {
 				)
 			} else if (icon === "Twitter") {
 				return (
-					<div key={`share-${icon}`} onClick={() => populateTweet()} style={adjustmentStyles} className={`${styles.shareIcon}`}>
-						<img width="100%" alt={`Share on ${icon}`} src={shareIconMapping[icon].icon} />
-					</div>
+					<a key={`share-${icon}`} {...shareIconMapping[icon].data}>
+						<div style={adjustmentStyles} className={`${styles.shareIcon}`}>
+							<img width="100%" alt={`Share on ${icon}`} src={shareIconMapping[icon].icon} />
+						</div>
+					</a>
 				)
 			} else {
 				return (
@@ -124,7 +126,7 @@ export default function ShareExpander({data, shareExpand, setShareExpand}){
 			<div onClick={() => setShareExpand(e => !e)}> Share This Org </div>
 			{
 				(shareExpand) ?
-					<ShareContents setShareUnfold={setShareExpand} icons={["Link", "Twitter", "Facebook"]}/>
+					<ShareContents data={data.metadata} setShareUnfold={setShareExpand} icons={["Link", "Twitter", "Facebook"]}/>
 				: 
 					null
 			}

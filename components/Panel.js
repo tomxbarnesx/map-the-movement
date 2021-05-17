@@ -34,41 +34,6 @@ const Panel = ({data, setActive, cyclePanels}) => {
 	const panelRef = useRef();
 	const twitterRef = useRef(null);
 
-	// useEffect(() => {
-	// 	if (windowCatch) {
-	// 		window.twttr = (function(d, s, id) {
-	// 			var js, fjs = d.getElementsByTagName(s)[0],
-	// 			t = window.twttr || {};
-	// 			if (d.getElementById(id)) return t;
-	// 			js = d.createElement(s);
-	// 			js.id = id;
-	// 			js.src = "https://platform.twitter.com/widgets.js";
-	// 			fjs.parentNode.insertBefore(js, fjs);
-	
-	// 			t._e = [];
-	// 			t.ready = function(f) {
-	// 				t._e.push(f);
-	// 			};
-	// 			return t;
-	// 		} (document, "script", "twitter-wjs"));
-		
-	// 		if (window.twttr) {
-	// 			twitterRef.current = window.twttr
-	// 			twitterRef.current.ready(
-	// 				function (twttr){
-	// 					twttr.events.bind('loaded', function (event) {
-	// 						event.widgets.forEach((widget, i) => {
-	// 							// if (i === event.widgets.length - 1) {
-	// 							// 	setTweetLoading(false)
-	// 							// }
-	// 						});
-	// 					});
-	// 				}
-	// 			);
-	// 		}
-	// 	}
-	// }, []);
-
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
 	return (

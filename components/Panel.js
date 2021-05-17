@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import SocialIcon from './SocialIcon.js'
-import ShareExpander from './ShareExpander.js'
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import {windowCatch} from '../utilities/layoutHooks.js';
+import SocialIcon from './SocialIcon.js';
+import ShareExpander from './ShareExpander.js';
+// import TimelineFix from './TimelineFix.js';
+import { Timeline } from 'react-twitter-widgets'
 import styles from '../styles/Panel.module.css';
 
 function colorBank(value) {
@@ -24,10 +28,46 @@ const TheHeart = () => {
 	)
 }
 
-
 const Panel = ({data, setActive, cyclePanels}) => {
 	const [shareExpand, setShareExpand] = useState(false);
+	const [twitterState, setTwitterState] = useState(false);
 	const panelRef = useRef();
+	const twitterRef = useRef(null);
+
+	// useEffect(() => {
+	// 	if (windowCatch) {
+	// 		window.twttr = (function(d, s, id) {
+	// 			var js, fjs = d.getElementsByTagName(s)[0],
+	// 			t = window.twttr || {};
+	// 			if (d.getElementById(id)) return t;
+	// 			js = d.createElement(s);
+	// 			js.id = id;
+	// 			js.src = "https://platform.twitter.com/widgets.js";
+	// 			fjs.parentNode.insertBefore(js, fjs);
+	
+	// 			t._e = [];
+	// 			t.ready = function(f) {
+	// 				t._e.push(f);
+	// 			};
+	// 			return t;
+	// 		} (document, "script", "twitter-wjs"));
+		
+	// 		if (window.twttr) {
+	// 			twitterRef.current = window.twttr
+	// 			twitterRef.current.ready(
+	// 				function (twttr){
+	// 					twttr.events.bind('loaded', function (event) {
+	// 						event.widgets.forEach((widget, i) => {
+	// 							// if (i === event.widgets.length - 1) {
+	// 							// 	setTweetLoading(false)
+	// 							// }
+	// 						});
+	// 					});
+	// 				}
+	// 			);
+	// 		}
+	// 	}
+	// }, []);
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
@@ -63,7 +103,7 @@ const Panel = ({data, setActive, cyclePanels}) => {
 									<TheHeart />
 								: null
 							}
-							<div className={styles.buttonsContainer}>
+							<div style={{position: "relative"}} className={styles.buttonsContainer}>
 								<ShareExpander data={data} shareExpand={shareExpand} setShareExpand={setShareExpand} />
 								{
 									(data.metadata.donateurl !== "") ? 
@@ -74,30 +114,67 @@ const Panel = ({data, setActive, cyclePanels}) => {
 										</div>
 									: null
 								}
+								<div className={styles.toggleContainer}>
+									<div onClick={() => {setTwitterState(false); cyclePanels(false);}} className={`${styles.toggleSizing} cursorPointer`}>❮</div>
+									<div onClick={() => {setTwitterState(false); cyclePanels(true);}} className={`${styles.toggleSizing} cursorPointer`}>❯</div>
+								</div>
 							</div>
 						</div>	
-						<div className={styles.toggleContainer}>
+						{
+							(!twitterState && data.metadata.twitter !== "" && data.metadata.twitter !== null) ? 
+								<div className="spinner">
+							        <div className="double-bounce1"></div>
+							        <div className="double-bounce2"></div>
+							    </div>
+							: null
+						}
+						{
+							(data.metadata.twitter !== "" && data.metadata.twitter !== null) ?
+								<div style={(twitterState) ? {opacity: "1"} : {opacity: "0"}} className="twitter-container">
+									<Timeline
+									  dataSource={{
+									    sourceType: 'profile',
+									    screenName: data.metadata.twitter.split('/').pop()
+									  }}
+									  onLoad={() => setTwitterState(true)}
+									  renderError={(_err) => <p>Error loading timeline</p>}
+									  options={{
+									  	theme: "dark",
+									  	width: "100%",
+									  	chrome: "transparent",
+									  	backgroundColor: "black"
+									  }}
+									/>
+								</div>
+							: null
+						}
+						{/*<SwitchTransition>
+		    				<CSSTransition 
+					       		key={data.metadata.twitter}
+					       		timeout={400}
+					       	>	
+								{
+									(data.metadata.twitter) ?
+										
+											<a ref={twitterRef} className="twitter-timeline" data-tweet-limit="21" data-theme="dark" data-chrome="noheader transparent" href={data.metadata.twitter}>Loading organization's latest tweets</a>			
+										</div>
+
+									: null
+								}
+							</CSSTransition>
+						</SwitchTransition>*/}
+						{/*<div className={styles.toggleContainer}>
 							<div onClick={() => cyclePanels(false)} className={`${styles.toggleSizing} cursorPointer`}>❮</div>
-								{/*<Image 
-									width={24}
-									height={50}
-									src={'/icons/advance.svg'}
-									className={`${styles.rotate180} cursorPointer`}
-									onClick={() => cyclePanels(false)}
-								/>*/}
 							<div onClick={() => cyclePanels(true)} className={`${styles.toggleSizing} cursorPointer`}>❯</div>
-								{/*<Image 
-									width={24}
-									height={50}
-									className={`cursorPointer`}
-									src={'/icons/advance.svg'}
-									onClick={() => cyclePanels(true)}
-								/>*/}
-						</div>
+						</div>*/}
 					</>
 				: null
 			}
 		</div>
 	)
 }
+/*<div className="twitter-container">
+									<a className="twitter-timeline" data-tweet-limit="21" data-theme="dark" data-chrome="noheader transparent" href={data.metadata.twitter}>Loading organization's latest tweets</a>			
+								</div>*/
+// RaleighPACT?ref_src=twsrc%5Etfw
 export default Panel;

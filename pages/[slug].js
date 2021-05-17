@@ -77,6 +77,7 @@ export default function SlugView({pageIndex, allOrgs}){
           crossOrigin=""/>
         <meta name="description" content={(activeData) ? `${activeData.metadata.summary}` : '#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration.'}/>
         <meta name="og:description" content={(activeData) ? `${activeData.metadata.summary}` : '#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration.'}/>
+        <script async src="https://platform.twitter.com/widgets.js" />
       </Head>
       <main id="map">
         <MapNoSSR slug={true} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>

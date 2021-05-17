@@ -10,7 +10,8 @@
 	margin: auto;
 	top: 0;
 	border: 8px double white;
-	overflow-y: auto;
+	overflow-y: scroll;
+	padding-left: calc(100vw - 100%);
 }
 
 .content {

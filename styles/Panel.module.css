@@ -130,7 +130,8 @@
 	top: 1em;
 	left: 2em;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
+	padding: .2em .5em;
 }
 
 .heartIcon {
@@ -141,8 +142,8 @@
 	opacity: 0;
 	transition: opacity 600ms;
 	margin-left: 1em;
-	width: 80%;
-	display: inline-block;
+/*	width: 80%;
+*/	display: inline-block;
 }
 .heartTooltip.vis {
 	opacity: 1;
@@ -162,6 +163,7 @@
 
 	.content {
 		margin-bottom: 2em;	
+		margin-top: 5em;
 	}
 	.toggleContainer {
 		position: absolute;

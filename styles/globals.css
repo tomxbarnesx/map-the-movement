@@ -367,7 +367,8 @@ footer > .contentWidth {
     float: unset;
   }
   .xPosition.mobileClose{
-    top: 1em;
+    top: .5em;
+    line-height: 1em;
   }
   .xPosition.stickyFloat.mobileClose {
     top: 1em;

@@ -23,7 +23,7 @@ const TheHeart = () => {
 	return (
 		<div className={styles.runByHeart}>
 			<span onMouseEnter={() => setHeartHover(true)} onMouseOut={() => setHeartHover(false)} className={`${styles.heartIcon} cursorPointer`}>❤️</span>
-			<small className={`${styles.heartTooltip} ${ (heartHover) ? styles.vis : '' }`}>This organization is run and/or founded by families of victims of police violence</small>				
+			<small className={`${styles.heartTooltip} ${ (heartHover) ? styles.vis : '' }`}>Run and/or founded by families of victims of police violence</small>				
 		</div>
 	)
 }
@@ -80,8 +80,8 @@ const Panel = ({data, setActive, cyclePanels}) => {
 									: null
 								}
 								<div className={styles.toggleContainer}>
-									<div onClick={() => {setTwitterState(false); cyclePanels(false);}} className={`${styles.toggleSizing} cursorPointer`}>❮</div>
-									<div onClick={() => {setTwitterState(false); cyclePanels(true);}} className={`${styles.toggleSizing} cursorPointer`}>❯</div>
+									<div onClick={() => {setTwitterState(false); cyclePanels(false);}} className={`${styles.toggleSizing} unselectable cursorPointer`}>❮</div>
+									<div onClick={() => {setTwitterState(false); cyclePanels(true);}} className={`${styles.toggleSizing} unselectable cursorPointer`}>❯</div>
 								</div>
 							</div>
 						</div>	

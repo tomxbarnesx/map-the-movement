@@ -5,7 +5,8 @@
 	position: fixed;
 	top: 0;
 	width: 100vw;
-	height: 3.4em;
+	height: 4vh;
+	height: calc(var(--vh, 1vh) * 10);
 }
 
 .navLogo {
@@ -50,7 +51,7 @@
 	visibility: hidden;
 	pointer-events: none;
 	z-index: 20;
-	filter: invert();
+	background-color: black;
 }
 
 .reveal {
@@ -88,14 +89,12 @@
 .menu {
 	position: relative;
 	top: 10px;
-	color: black;
 	display: none;
 	margin-top: 60px;
 	text-decoration: none;
 	font-weight: 100;
 	font-size: 20px;
 	text-transform: uppercase;
-	color: #333;
 	padding: 4em;
 	height: 75vh;
     text-align: center;
@@ -106,14 +105,14 @@
 	text-decoration: none!important;
 	padding-bottom: 10px;
 	margin-bottom: 12px;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #b3b3b3;
 	list-style: none;
-	color: #555;
+	color: #b3b3b3;
 	transition: all 150ms ease;
 }
 
 .menu a li:hover {
-	color: #CC2D2F;
+	color: yellow;
 	padding-right: 3px;
 }
 
@@ -123,10 +122,11 @@
     position: absolute;
     left: 0;
     right: 0;
+    color: #b3b3b3;
 }
 
 .navTerms a:hover {
-	color: #CC2D2F;
+	color: yellow;
 	padding-right: 3px;
 }
 
@@ -222,7 +222,7 @@
 		width: 45%;		
 		right: 0;
 		left: unset;
-		box-shadow: 0em 0em 0.4em;
+		box-shadow: 0em 0em 0.4em black;
 		overflow-y: hidden;
 	}
 	.navContainer {

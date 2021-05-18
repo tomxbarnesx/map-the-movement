@@ -41,7 +41,7 @@ export default function SubmitForm({setListOpen}) {
 	return (
 		<div className={styles.submitForm}>
 			<h1 style={{marginBottom: "0"}}>Submit a New Organization</h1>
-			<p style={{marginBottom: "0"}}><em>We're always looking to add new organizations. Please submit as much info as you can, so we can find it and determine if it's a good fit here. If you include your email, we'll send you a note if it's approved!</em></p>
+			<p style={{marginBottom: "0"}}><em>We're always looking to add new organizations. Please submit as much info as you can, so we can find it and determine if it's a good fit for the map. If you include your email, we'll send you a note if it's approved!</em></p>
 			<form onSubmit={(e) => {e.preventDefault(); return setSending(true)}}>
 				<div>
 					<label htmlFor="title" style={{display: "none"}}>Organization Name</label>
@@ -65,7 +65,7 @@ export default function SubmitForm({setListOpen}) {
 				</div>
 				{
 					(!sending) ?
-						<input className={`${styles.learnMoreButton} ${styles.centered}`} type="submit" value="Submit" />
+						<input className={`${styles.learnMoreButton} ${styles.submitButton} ${styles.centered}`} type="submit" value="Submit" />
 					: 
 						<div className={`${styles.learnMoreButton} ${styles.centered}`}>
 							Sending...

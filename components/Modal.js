@@ -13,9 +13,9 @@ export default function Modal({modal, setModal, children}) {
 			var ctx = document.createElement("canvas").getContext("2d");
 			ctx.fillText("🗒️", -2, 4);
 			if (ctx.getImageData(0, 0, 1, 1).data[3] > 0) { 
-				return '🗒️' 
+				return '🗒️'
 			} else {
-				return '📃'
+				return '📄'
 			} 
 		}
 		modalEmoji.current = supportsEmoji()

@@ -33,11 +33,11 @@ main {
 	position: fixed;
 	z-index: 9999;  
   font-weight: bolder;
-  font-size: 2em;
+  font-size: 3em;
 }
 .xPosition.mobileClose{
-  right: 1em;
-  top: 1.65em;
+  right: .5em;
+  top: 1.25em;
 }
 .xPosition.nonFixed {
   position: absolute;
@@ -361,6 +361,7 @@ footer > .contentWidth {
 		right: 1em;
 		top: 1em;
 		position: absolute;
+    font-size: 2em;
 	}
   .xPosition.stickyFloat {
     position: absolute;

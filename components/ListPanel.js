@@ -90,9 +90,7 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 										</ul>
 									</div>
 								: (listOpen === 2) ?
-									
 										<SubmitForm setListOpen={setListOpen}/>
-									
 								: null
 							}
 						</>

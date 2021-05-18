@@ -5,7 +5,6 @@ import {windowCatch} from '../utilities/layoutHooks.js';
 import {usePrevious} from '../utilities/miscHooks.js';
 import SocialIcon from './SocialIcon.js';
 import ShareExpander from './ShareExpander.js';
-// import TimelineFix from './TimelineFix.js';
 import { Timeline } from 'react-twitter-widgets'
 import styles from '../styles/Panel.module.css';
 
@@ -23,7 +22,7 @@ const TheHeart = () => {
 	const [heartHover, setHeartHover] = useState(false)
 	return (
 		<div className={styles.runByHeart}>
-			<span onMouseEnter={() => setHeartHover(true)} onMouseOut={() => setHeartHover(false)} className={`${styles.heartIcon} cursorPointer`}>❤️</span>
+			<span onClick={() => setHeartHover(h => !h)} onMouseEnter={() => setHeartHover(true)} onMouseOut={() => setHeartHover(false)} className={`${styles.heartIcon} cursorPointer`}>💜</span>
 			<small className={`${styles.heartTooltip} ${ (heartHover) ? styles.vis : '' }`}>Run and/or founded by families of victims of police violence</small>				
 		</div>
 	)
@@ -33,14 +32,6 @@ const Panel = ({data, setActive, cyclePanels}) => {
 	const [shareExpand, setShareExpand] = useState(false);
 	const [twitterState, setTwitterState] = useState(false);
 	const twitterPrev = usePrevious((data) ? data.metadata.twitter : null)
-	// const twitterRef = useRef(null);
-
-	// const handleCycle = (direction) => {
-	// 	if () {
-	// 		setTwitterState(false); 
-	// 	}
-	// 	cyclePanels(false);
-	// }
 
 	useEffect(() => {
 		if (data) {

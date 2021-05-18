@@ -40,7 +40,7 @@ function ShareContents({data, icons, addStyles, options, setShareUnfold}) {
 		"Facebook": {
 			"icon": '/logos/fb.svg',
 			"data": {
-				"href": `https://www.facebook.com/sharer/sharer.php?u=${window.location}`,
+				"href": `https://www.facebook.com/sharer/sharer.php?u=${window.location}&quote=${data.share_text}`,
 				"target": "_blank",
 				"rel": "noopener noreferrer"
 			}

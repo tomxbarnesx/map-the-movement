@@ -1,11 +1,11 @@
-import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { Timeline } from 'react-twitter-widgets'
 import {windowCatch} from '../utilities/layoutHooks.js';
 import {usePrevious} from '../utilities/miscHooks.js';
 import SocialIcon from './SocialIcon.js';
+import Image from './Image';
 import ShareExpander from './ShareExpander.js';
-import { Timeline } from 'react-twitter-widgets'
 import styles from '../styles/Panel.module.css';
 
 function colorBank(value) {

@@ -40,6 +40,7 @@ export default function RootView({allOrgs}){
   const handleListSelection = (data) => {
     const targetIndex = allOrgs.findIndex((el) => el.slug === data.slug)
     setActive(targetIndex)
+    setListOpen(false)
   }
 
   const MapNoSSR = useMemo(() => dynamic(() => import("../components/MapRework.js"), {
@@ -75,20 +76,16 @@ export default function RootView({allOrgs}){
     <>
       <Head>
         <title>#MapTheMovement | Explore The Map</title>
-        <link rel="icon" href="/frame.ico" />
-        <meta charSet="utf-8" />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-        <link rel="shortcut icon" href="{% static 'amp_stories/frame.ico' %}"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossOrigin=""/>
-        <meta property="og:url" content="https://mapthemovement.com/" />
+        <meta property="og:url" content="https://www.mapthemovement.com/" />
         <meta property="og:type" content="website" />        
         <meta property="og:title" content="#MapTheMovement" />
+        <meta name="twitter:title" content="#MapTheMovement" />
         <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
-        <meta property="og:image" content="/images/map-the-movement-share_191_1.jpg" />
-        <meta property="og:image:type" content="image/jpeg" />
+        <meta name="twitter:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />       
         <meta name="apple-mobile-web-app-capable" content="yes" />
         {/*        <meta property="fb:app_id" content="2311483179121947" />
 */}        

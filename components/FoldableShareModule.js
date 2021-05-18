@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import Tooltip from '../components/Tooltip.js';
+import { useTooltip } from '../utilities/miscHooks.js';
 import styles from '../styles/Modal.module.css';
 
 // import Twitter from '../../../images/socials/twitter.svg';
@@ -103,6 +104,7 @@ export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 
 const FoldableShareModule = ({shareUnfold, setShareUnfold}) => {
 	const [tooltipVis, setTooltipVis] = useState(false)
+	useTooltip(shareUnfold, setTooltipVis)
 
 	return (
 		<div className={`${styles.foldableShare} ${(shareUnfold) ? styles.open : ''} flex flex-end align-center`}>

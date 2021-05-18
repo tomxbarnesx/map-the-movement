@@ -45,7 +45,7 @@ export default function Nav() {
 		<div className={styles.navContainer}>
 			<Link href="/">
 				<a>
-					<div className={styles.navLogo}>
+					<div className={`${styles.navLogo} unselectable`}>
 						<h1 style={{width: "max-content"}}>#MapTheMovement</h1>
 					</div>
 				</a>

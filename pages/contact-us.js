@@ -1,17 +1,17 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Team.module.css';
 
 const ContactOption = ({url, src, method, xClasses}) => {
   return (
     <a href={url}>
       <div className={`${styles.contactOption} cursorPointer`}>
-        <Image 
+        {/*<Image 
           src={src}
           height={45}
           width={45}
           className={xClasses}
-        />
+        />*/}
+        <img src={src} height="45px" width="45px" className={xClasses}/>
         <h2>{method}</h2>
       </div>
     </a>

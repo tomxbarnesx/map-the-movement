@@ -50,6 +50,7 @@ export default function SlugView({pageIndex, allOrgs}){
   const handleListSelection = (data) => {
     const targetIndex = allOrgs.findIndex((el) => el.slug === data.slug)
     setActive(targetIndex)
+    setListOpen(false)
   }
 
   useEffect(() => {

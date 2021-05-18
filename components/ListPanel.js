@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from '../styles/Modal.module.css';
 import Tooltip from '../components/Tooltip.js';
+import { useTooltip } from '../utilities/miscHooks.js';
 import SubmitForm from '../components/SubmitForm.js';
 import throttle from "lodash/throttle";
 
@@ -31,7 +32,9 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 	const [searchValue, setSearchValue] = useState('')
 	const [sortedData, setSortedData] = useState([...data].sort((a, b) => a.title.localeCompare(b.title)))
 	const [filteredList, setFilteredList] = useState(sortedData)
+	const panelRef = useRef()
 	const vis = (listOpen) ? styles.open : '';
+	useTooltip(listOpen, setTooltipVis)
 
 	const listFilter = throttle(() => {
 		const lcCompare = searchValue.toLowerCase()
@@ -51,6 +54,13 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 	useEffect(() => {
 		listFilter()
 	}, [searchValue, familyRun, bailFund])
+	useEffect(() => {
+		let delayedScroll = setTimeout(() => {
+			panelRef.current.scrollTop = 0;
+		}, 400)
+
+		return () => clearTimeout(delayedScroll)
+	},[listOpen])
 
 	const listItems = (data && filteredList) ? filteredList.map((li, i) => <ListItem key={`list-item-${i}`} data={li} handleListSelection={handleListSelection} i={i}/>) : null;
 
@@ -60,7 +70,7 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 				<span className='cursorPointer' onClick={() => setListOpen(l => (l === 1) ? 0 : 1)} onMouseEnter={() => setTooltipVis(true)} onMouseOut={() => setTooltipVis(false)}>🔍</span>
 				<Tooltip toolTitle={"Search / List View"} vis={tooltipVis}/>
 			</div>
-			<div className={`${styles.listContainer} ${vis}`}>
+			<div ref={panelRef} className={`${styles.listContainer} ${vis}`}>
 				<div className={styles.blackBar}/>
 				<div className="xPosition mobileClose stickyFloat cursorPointer greyHaze" onClick={() => setListOpen(false)}>
 					✕

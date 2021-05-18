@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from '../styles/Panel.module.css';
+import Image from './Image.js';
 // import { ShareContents } from '../components/FoldableShareModule';
 
 function ShareContents({data, icons, addStyles, options, setShareUnfold}) {

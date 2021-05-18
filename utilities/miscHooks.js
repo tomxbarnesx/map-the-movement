@@ -7,3 +7,9 @@ export function usePrevious(value) {
   });
   return ref.current;
 }
+
+export function useTooltip(effectTrigger, setTooltipVis) {
+	useEffect(() => {
+		setTooltipVis(false)
+	}, [effectTrigger])
+}

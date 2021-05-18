@@ -1,13 +1,14 @@
-import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { useTooltip } from '../utilities/miscHooks.js';
 import Tooltip from '../components/Tooltip.js';
+import Image from './Image.js';
 import styles from '../styles/Modal.module.css';
 
 export default function Modal({modal, setModal, children}) {
 	const [tooltipVis, setTooltipVis] = useState(false)
 	const modalEmoji = useRef('🗒️')
-
+	useTooltip(modal, setTooltipVis)
 	useEffect(() => {
 		const supportsEmoji = () =>  {
 			var ctx = document.createElement("canvas").getContext("2d");
@@ -20,6 +21,7 @@ export default function Modal({modal, setModal, children}) {
 		}
 		modalEmoji.current = supportsEmoji()
 	}, [])
+
 
 	return (
 		<>

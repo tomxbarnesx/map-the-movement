@@ -86,9 +86,7 @@ export default function RootView({allOrgs}){
         <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta name="twitter:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />       
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        {/*        <meta property="fb:app_id" content="2311483179121947" />
-*/}        
+        <meta name="apple-mobile-web-app-capable" content="yes" />     
       </Head>
       <main id="map">
         <MapNoSSR data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>

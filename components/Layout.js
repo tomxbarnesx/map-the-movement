@@ -16,7 +16,7 @@ function Layout({ children }){
 				<meta property="og:image" content="https://map-the-movement-cdn.s3.amazonaws.com/map-the-movement-social-share2021.jpg" />
         		<meta property="og:image:type" content="image/jpeg" />
 				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:image" content="https://map-the-movement-cdn.s3.amazonaws.com/map-the-movement-social-share2021.jpg" />
+				<meta name="twitter:image" content="https://map-the-movement-cdn.s3.amazonaws.com/map-the-movement-social-share_twitter2021.jpg" />
 				<meta name="twitter:site" content="@exploreframe" />
 				<meta name="twitter:creator" content="@exploreframe" />
 				<meta property="fb:app_id" content="2311483179121947" /> 

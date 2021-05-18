@@ -1,16 +1,30 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Tooltip from '../components/Tooltip.js';
 import styles from '../styles/Modal.module.css';
 
 export default function Modal({modal, setModal, children}) {
 	const [tooltipVis, setTooltipVis] = useState(false)
+	const modalEmoji = useRef('🗒️')
+
+	useEffect(() => {
+		const supportsEmoji = () =>  {
+			var ctx = document.createElement("canvas").getContext("2d");
+			ctx.fillText("🗒️", -2, 4);
+			if (ctx.getImageData(0, 0, 1, 1).data[3] > 0) { 
+				return '🗒️' 
+			} else {
+				return '📃'
+			} 
+		}
+		modalEmoji.current = supportsEmoji()
+	}, [])
 
 	return (
 		<>
 			<div className={styles.modalIcon}>
-				<span className='cursorPointer' onClick={() => setModal(m => !m)} onMouseEnter={() => setTooltipVis(true)} onMouseOut={() => setTooltipVis(false)}>🗒️</span>
+				<span className='cursorPointer' onClick={() => setModal(m => !m)} onMouseEnter={() => setTooltipVis(true)} onMouseOut={() => setTooltipVis(false)}>{ modalEmoji.current }</span>
 				<Tooltip toolTitle={"Introduction"} vis={tooltipVis}/>
 			</div>
 			<CSSTransition 

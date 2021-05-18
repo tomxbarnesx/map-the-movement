@@ -159,7 +159,7 @@ main {
   transition: opacity 200ms;
   left: 5.5em;
   padding: 1em;
-  display: inline-block;
+  display: inline-table;
   font-size: .5em;
   width: max-content;
   pointer-events: none;

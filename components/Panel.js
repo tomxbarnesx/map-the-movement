@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import {windowCatch} from '../utilities/layoutHooks.js';
+import {usePrevious} from '../utilities/miscHooks.js';
 import SocialIcon from './SocialIcon.js';
 import ShareExpander from './ShareExpander.js';
 // import TimelineFix from './TimelineFix.js';
@@ -31,13 +32,28 @@ const TheHeart = () => {
 const Panel = ({data, setActive, cyclePanels}) => {
 	const [shareExpand, setShareExpand] = useState(false);
 	const [twitterState, setTwitterState] = useState(false);
-	const panelRef = useRef();
-	const twitterRef = useRef(null);
+	const twitterPrev = usePrevious((data) ? data.metadata.twitter : null)
+	// const twitterRef = useRef(null);
+
+	// const handleCycle = (direction) => {
+	// 	if () {
+	// 		setTwitterState(false); 
+	// 	}
+	// 	cyclePanels(false);
+	// }
+
+	useEffect(() => {
+		if (data) {
+			if (twitterPrev !== data.metadata.twitter) {
+				setTwitterState(false); 
+			}
+		}
+	}, [data])
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
 	return (
-		<div  ref={panelRef} style={{border: `8px double ${orgColor}`}} className={styles.container}>
+		<div style={{border: `8px double ${orgColor}`}} className={styles.container}>
 			{
 				(data) ?
 					<>
@@ -80,8 +96,8 @@ const Panel = ({data, setActive, cyclePanels}) => {
 									: null
 								}
 								<div className={styles.toggleContainer}>
-									<div onClick={() => {setTwitterState(false); cyclePanels(false);}} className={`${styles.toggleSizing} unselectable cursorPointer`}>❮</div>
-									<div onClick={() => {setTwitterState(false); cyclePanels(true);}} className={`${styles.toggleSizing} unselectable cursorPointer`}>❯</div>
+									<div onClick={() => {cyclePanels(false);}} className={`${styles.toggleSizing} unselectable cursorPointer`}>❮</div>
+									<div onClick={() => {cyclePanels(true);}} className={`${styles.toggleSizing} unselectable cursorPointer`}>❯</div>
 								</div>
 							</div>
 						</div>	
@@ -113,25 +129,6 @@ const Panel = ({data, setActive, cyclePanels}) => {
 								</div>
 							: null
 						}
-						{/*<SwitchTransition>
-		    				<CSSTransition 
-					       		key={data.metadata.twitter}
-					       		timeout={400}
-					       	>	
-								{
-									(data.metadata.twitter) ?
-										
-											<a ref={twitterRef} className="twitter-timeline" data-tweet-limit="21" data-theme="dark" data-chrome="noheader transparent" href={data.metadata.twitter}>Loading organization's latest tweets</a>			
-										</div>
-
-									: null
-								}
-							</CSSTransition>
-						</SwitchTransition>*/}
-						{/*<div className={styles.toggleContainer}>
-							<div onClick={() => cyclePanels(false)} className={`${styles.toggleSizing} cursorPointer`}>❮</div>
-							<div onClick={() => cyclePanels(true)} className={`${styles.toggleSizing} cursorPointer`}>❯</div>
-						</div>*/}
 					</>
 				: null
 			}

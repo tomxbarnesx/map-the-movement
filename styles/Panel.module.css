@@ -1,14 +1,14 @@
 .container {
 	position: absolute;
 	height: 91.6vh;
-	height: calc(var(--vh, 1vh) * 89.5);
+	height: calc(var(--vh, 1vh) * 90.6);
 	width: 100vw;
 	z-index: 9997;
 	background: black;
 	left: 0;
 	right: 0;
 	margin: auto;
-	top: calc(var(--vh, 1vh) * 10.65);
+	top: 3.6em;
 	border: 8px double white;
 	overflow-y: scroll;
 	padding-left: calc(100vw - 100%);

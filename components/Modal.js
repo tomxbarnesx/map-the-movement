@@ -55,11 +55,14 @@ export default function Modal({modal, setModal, children}) {
 						<div>
 			    			<h1 className={styles.blackTextMask}>#MapTheMovement</h1>
 							<div className="decorativeSeparator"/>
-							<p style={{paddingLeft: "1em"}}>Across the United States, police violence cuts hundreds of lives short every year and instills a daily fear in Black and brown communities. A 2018 study from the Department of Justice detailed how in the year prior to the study, hundreds of thousands of Black people reported being subjected to excessive use of force from police — at around double the rate of white people.</p>
+							<p style={{paddingLeft: "1em"}}>In May 2020, the murder of George Floyd ignited a reckoning around racism and police violence in the United States. It sparked a wave of attention and donations to several national organizations fighting to transform U.S. policing — but largely overlooked hundreds of local groups across the country, working on the ground to end overpolicing and mass incarceration.</p>
+							<p style={{paddingLeft: "1em"}}>#MapTheMovement aims to shine a light on these grassroots organizations and provide a resource for people to find them, share them, and donate to help further their work. This project was inspired by a documentary from Frame, which tells the story of Rolanda Byrd, who lost her son to police violence in 2016, and became the Executive Director of Raleigh PACT, an organization in Raleigh, North Carolina working to stop police brutality.</p>
+							<p style={{paddingLeft: "1em"}}>Watch the film below and explore, share, and learn about the myriad organizations like Raleigh PACT, on the map. Within every neighborhood, there is likely a group fighting to fix the U.S.'s unjust policing and carceral state. We hope you use this map to find and engage with yours.</p>
+							{/*<p style={{paddingLeft: "1em"}}>Across the United States, police violence cuts hundreds of lives short every year and instills a daily fear in Black and brown communities. A 2018 study from the Department of Justice detailed how in the year prior to the study, hundreds of thousands of Black people reported being subjected to excessive use of force from police — at around double the rate of white people.</p>
 							<p style={{paddingLeft: "1em"}}>In the wake of George Floyd’s murder, the movement for Black lives gained support and attention not seen since the Civil Rights movement of the 1960s. Much of that attention has been focused on a few major national organizations fighting police brutality and racial injustice, but behind the big names are hundreds of local groups, working on the ground to end overpolicing and mass incarceration.</p>
 							<p style={{paddingLeft: "1em"}}>#MapTheMovement aims to shine a light on the many grassroots organizations fighting to end racist policing and provide a resource for people to find them, share them, and donate to help further their work. This project was inspired by a documentary from Frame, which tells the story of Rolanda Byrd, who lost her son to police violence in 2016, and became the Executive Director of Raleigh PACT, an organization in Raleigh, North Carolina working to stop police brutality.</p>
-							<p style={{paddingLeft: "1em"}}>Watch the film below and explore, share, and learn about the myriad organizations like Raleigh PACT, on the map. Within everybody’s neighborhood, there is likely a group fighting to fix the U.S.’ unjust police and carceral state — we hope you use this map to find and engage with yours.</p>
-							<div style={{marginTop: "2.5em"}} className={`${styles.flexing} flex space-evenly`}>
+							<p style={{paddingLeft: "1em"}}>Watch the film below and explore, share, and learn about the myriad organizations like Raleigh PACT, on the map. Within everybody’s neighborhood, there is likely a group fighting to fix the U.S.’ unjust police and carceral state — we hope you use this map to find and engage with yours.</p>*/}
+							<div style={{margin: "2.5em auto 1em", width: "75%"}} className={`${styles.flexing} flex space-evenly`}>
 								<a href="https://frame.media/stories/raleigh-pact-part-i/?mtm=1" target="_blank" rel="noopener noreferrer">
 									<div className={`${styles.learnMoreButton} cursorPointer`}> 
 										Watch the Film
@@ -71,7 +74,7 @@ export default function Modal({modal, setModal, children}) {
 							</div>
 						</div>
 						<div className={styles.poweredBy}>
-							Powered by
+							<span style={{marginLeft: "-16px"}}>Powered by</span>
 							<a target="_blank" rel="noopener noreferrer" href="https://frame.media/">
 								<div style={{marginLeft: ".4em"}}>
 									<Image 

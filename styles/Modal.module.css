@@ -298,16 +298,20 @@ h1.blackTextMask{
         overflow: auto;
     }
     .modalContent {
-        margin: 11em 6em 3em;
+        margin: 9em 6em 0em;
         position: relative;
+        min-height: 71vh;
+        height: auto;
+        vertical-align: middle;
+        display: inline-block;
     }
     .poweredBy {
-        position: absolute;
+/*        position: absolute;
         left: 0;
-        right: 0;
+        right: 0;*/
         margin: auto;
-        bottom: -2em;
-    }
+/*        bottom: -2em;
+*/    }
     h1.blackTextMask{
         font-size: 2.6em;
     }

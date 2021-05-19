@@ -20,6 +20,17 @@ function Layout({ children }){
 				<meta name="twitter:site" content="@exploreframe" />
 				<meta name="twitter:creator" content="@exploreframe" />
 				<meta property="fb:app_id" content="2311483179121947" /> 
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139166607-1"></script>
+			    <script
+		            dangerouslySetInnerHTML={{
+		              __html: `
+		            window.dataLayer = window.dataLayer || [];
+		            function gtag(){dataLayer.push(arguments);}
+		            gtag('js', new Date());
+		            gtag('config', 'UA-139166607-1');
+		          `,
+		            }}
+		        />
 			</Head>
 			<AppWrapper>
 				<Head>

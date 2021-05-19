@@ -78,12 +78,14 @@ export default function SlugView({pageIndex, allOrgs}){
     <>
       <Head>
         <title>{(activeData) ? `${activeData.title} | ` : ''}#MapTheMovement</title>
-        <link rel="icon" href="/frame.ico" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossOrigin=""/>
         <meta name="description" content={(activeData) ? `${activeData.metadata.summary}` : '#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration.'}/>
         <meta name="og:description" content={(activeData) ? `${activeData.metadata.summary}` : '#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration.'}/>
+        <meta name="twitter:description" content={(activeData) ? `${activeData.metadata.summary}` : '#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration.'}/>
+        <meta property="og:title" content={`${(activeData) ? `${activeData.title} | ` : ''}#MapTheMovement`} />
+        <meta name="twitter:title" content={`${(activeData) ? `${activeData.title} | ` : ''}#MapTheMovement`} />
       </Head>
       <main id="map">
         <MapNoSSR slug={true} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>

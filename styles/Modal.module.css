@@ -306,12 +306,9 @@ h1.blackTextMask{
         display: inline-block;
     }
     .poweredBy {
-/*        position: absolute;
-        left: 0;
-        right: 0;*/
         margin: auto;
-/*        bottom: -2em;
-*/    }
+        margin-left: -16px;
+    }
     h1.blackTextMask{
         font-size: 2.6em;
     }

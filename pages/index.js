@@ -80,13 +80,11 @@ export default function RootView({allOrgs}){
           integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
           crossOrigin=""/>
         <meta property="og:url" content="https://www.mapthemovement.com/" />
-        <meta property="og:type" content="website" />        
         <meta property="og:title" content="#MapTheMovement" />
         <meta name="twitter:title" content="#MapTheMovement" />
         <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta name="twitter:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />       
-        <meta name="apple-mobile-web-app-capable" content="yes" />     
       </Head>
       <main id="map">
         <MapNoSSR data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>

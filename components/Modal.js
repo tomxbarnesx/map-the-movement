@@ -74,7 +74,7 @@ export default function Modal({modal, setModal, children}) {
 							</div>
 						</div>
 						<div className={styles.poweredBy}>
-							<span style={{marginLeft: "-16px"}}>Powered by</span>
+							<span>Powered by</span>
 							<a target="_blank" rel="noopener noreferrer" href="https://frame.media/">
 								<div style={{marginLeft: ".4em"}}>
 									<Image 

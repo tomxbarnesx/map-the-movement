@@ -15,11 +15,13 @@ function Layout({ children }){
         		<link rel="shortcut icon" href="/logos/MTM_Logo.ico" />
 				<meta property="og:image" content="https://map-the-movement-cdn.s3.amazonaws.com/map-the-movement-social-share2021.jpg" />
         		<meta property="og:image:type" content="image/jpeg" />
+				<meta property="og:type" content="website" />        
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:image" content="https://map-the-movement-cdn.s3.amazonaws.com/map-the-movement-social-share_twitter2021.jpg" />
 				<meta name="twitter:site" content="@exploreframe" />
 				<meta name="twitter:creator" content="@exploreframe" />
 				<meta property="fb:app_id" content="2311483179121947" /> 
+				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139166607-1"></script>
 			    <script
 		            dangerouslySetInnerHTML={{

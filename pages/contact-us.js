@@ -5,12 +5,6 @@ const ContactOption = ({url, src, method, xClasses}) => {
   return (
     <a href={url}>
       <div className={`${styles.contactOption} cursorPointer`}>
-        {/*<Image 
-          src={src}
-          height={45}
-          width={45}
-          className={xClasses}
-        />*/}
         <img src={src} height="45px" width="45px" className={xClasses}/>
         <h2>{method}</h2>
       </div>
@@ -23,18 +17,11 @@ export default function Contact(){
 		<>
 			<Head>
 				<title>#MapTheMovement | Contact</title>
-		        <link rel="icon" href="/frame.ico" />
-		        <meta charSet="utf-8" />
-		        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-		        <link rel="shortcut icon" href="/frame.ico"/>
 		        <meta property="og:url" content="https://mapthemovement.com/contact-us" />
-		        <meta property="og:type" content="website" />        
-		        <meta property="og:title" content="#MapTheMovement" />
+		        <meta property="og:title" content="#MapTheMovement | Contact" />
 		        <meta name="description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
 		        <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
-		        <meta property="og:image" content="/images/map-the-movement-share_191_1.jpg" />
-		        <meta property="og:image:type" content="image/jpeg" />
-		        <meta name="apple-mobile-web-app-capable" content="yes" />
+			    <meta name="twitter:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration."/>
 			</Head>
 			<main>
 				<div className='contentContainer withPadding'>

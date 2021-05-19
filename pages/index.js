@@ -101,8 +101,8 @@ export default function RootView({allOrgs}){
         <div className={styles.tray}>
           <Modal modal={modal} setModal={setModal}/>
           <ListPanel listOpen={listOpen} setListOpen={setListOpen} setActive={setActive} handleListSelection={handleListSelection} data={allOrgs}/>
+          <AddOrgButton listOpen={listOpen} setListOpen={setListOpen}/>
           <Randomizer length={allOrgs.length} setActive={setActive} />
-          <AddOrgButton setListOpen={setListOpen}/>
           <FoldableShareModule shareUnfold={shareUnfold} setShareUnfold={setShareUnfold} icons={["Link", "Twitter", "Facebook"]}/>
         </div>
       </main>

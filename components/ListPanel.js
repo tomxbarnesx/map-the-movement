@@ -32,7 +32,7 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 	const [searchValue, setSearchValue] = useState('')
 	const [sortedData, setSortedData] = useState([...data].sort((a, b) => a.title.localeCompare(b.title)))
 	const [filteredList, setFilteredList] = useState(sortedData)
-	const panelRef = useRef()
+	const panelRef = useRef();
 	const vis = (listOpen) ? styles.open : '';
 	useTooltip(listOpen, setTooltipVis)
 

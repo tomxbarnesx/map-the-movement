@@ -5,12 +5,12 @@
 	position: fixed;
 	top: 0;
 	width: 100vw;
-	height: 4vh;
-	height: calc(var(--vh, 1vh) * 10);
+	height: 8vh;
+	height: calc(var(--vh, 1vh) * 8);
+	min-height: 3.5em;
 }
 
 .navLogo {
-	background-color: black;
 	z-index: 1000;
 	width: 100%;
 	position: fixed;
@@ -231,6 +231,9 @@
 	}
 	.hamburgerShell {
 		width: 60px;
+	}
+	.navLogo {
+		background-color: black;
 	}
 }
 

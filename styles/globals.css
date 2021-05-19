@@ -47,7 +47,7 @@ main {
   float: right;
 }
 .xPosition.stickyFloat.mobileClose {
-  top: 1em;
+  top: 1.25em;
   right: 0;
 }
 .cursorPointer {

@@ -5,6 +5,7 @@ import {useMemo} from 'react';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import {useWindowSize } from '../utilities/layoutHooks.js';
 import { getSlugObjectAndMoreObjects, getAllSlugs } from "../lib/cosmic";
 import Panel from '../components/Panel.js'
 import Modal from '../components/Modal.js'
@@ -26,6 +27,7 @@ export default function SlugView({pageIndex, allOrgs}){
       </div>
     )
   }
+  const windowSize = useWindowSize()
   const [active, setActive] = useState(pageIndex);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
@@ -88,7 +90,7 @@ export default function SlugView({pageIndex, allOrgs}){
         <meta name="twitter:title" content={`${(activeData) ? `${activeData.title} | ` : ''}#MapTheMovement`} />
       </Head>
       <main id="map">
-        <MapNoSSR slug={true} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
+        <MapNoSSR windowSize={windowSize} slug={true} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
         <CSSTransition 
           in={(active !== null)} 
           timeout={400}

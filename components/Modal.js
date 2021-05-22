@@ -71,6 +71,11 @@ export default function Modal({modal, setModal, children}) {
 								<div className={`${styles.learnMoreButton} cursorPointer`} onClick={() => setModal(false)}> 
 									Explore the Map
 								</div>
+								<a style={{marginBottom: "1em"}} target="_blank" rel="noopener noreferrer" href="https://twitter.com/chelseybrejanee/status/1395802271074721801?s=21">
+									<div className={`${styles.learnMoreButton} ${styles.noBottomMargin} cursorPointer`}> 
+										How To Use
+									</div>
+								</a>
 							</div>
 						</div>
 						<div className={styles.poweredBy}>

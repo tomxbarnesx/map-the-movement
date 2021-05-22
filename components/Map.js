@@ -49,11 +49,6 @@ function ReformMap(){
 	}
 
 	useEffect(() => {
-		console.log("MOBILE", windowSize.width < 768)
-		// axios.get('https://api.aglty.io/146b4de6-u/fetch/en-us/list/orgs')
-	}, [])
-
-	useEffect(() => {
 		if (active !== null) {
 			// SAVE PREV
 			setPrevActive(active)

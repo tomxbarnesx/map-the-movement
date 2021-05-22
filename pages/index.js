@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import {useMemo} from 'react';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef } from 'react';
+import {useWindowSize } from '../utilities/layoutHooks.js';
 import { CSSTransition } from 'react-transition-group';
 import { getAllObjects } from "../lib/cosmic";
 import Panel from '../components/Panel.js';
@@ -16,6 +17,7 @@ import styles from '../styles/Map.module.css';
 
 export default function RootView({allOrgs}){
   const router = useRouter()
+  const windowSize = useWindowSize()
   const [active, setActive] = useState(null);
   const [modal, setModal] = useState(false);
   const [listOpen, setListOpen] = useState(false);
@@ -86,8 +88,8 @@ export default function RootView({allOrgs}){
         <meta property="og:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />
         <meta name="twitter:description" content="#MapTheMovement is an interactive map of organizations fighting to end police violence and mass incarceration." />       
       </Head>
-      <main id="map">
-        <MapNoSSR data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
+      <main className={styles.fixedExperiment} id="map">
+        <MapNoSSR windowSize={windowSize} data={allOrgs} active={active} setActive={setActive} modal={modal} setModal={setModal} listOpen={listOpen} setListOpen={setListOpen}/>
         <CSSTransition 
           in={(active !== null)} 
           timeout={400}

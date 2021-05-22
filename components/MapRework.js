@@ -33,14 +33,12 @@ function ClickClose({active, setActive, modal, setModal, listOpen, setListOpen})
 	return null
 }
 
-function ReformMap({data, active, setActive, modal, setModal, listOpen, setListOpen, slug}){
-	const windowSize = useWindowSize()
-	const [lat, setLat] = useState(38.914295);
-	const [lng, setLng] = useState(-77.035144);
-	const [coords, setCoords] = useState([38.914295,-95.035144]);
+function ReformMap({data, windowSize, active, setActive, modal, setModal, listOpen, setListOpen, slug}){
+	// const windowSize = useWindowSize()
+	const [coords, setCoords] = useState((windowSize.width < 768) ? [38.914295,-85.035144] : [38.914295,-95.035144]);
 	// *** SET A MOBILE OPTION!
 	// const [coords, setCoords] = useState([38.914295,-77.035144]);
-	const [zoom] = useState(5);
+	const [zoom] = useState((windowSize.width < 768) ? 4 : 5);
 	const router = useRouter();
 	const [map, setMap] = useState(null);
 	const mapStyle = {

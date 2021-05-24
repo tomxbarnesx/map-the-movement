@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import {useState, useEffect, useRef} from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from '../styles/Modal.module.css';
-import Tooltip from '../components/Tooltip.js';
 import { useTooltip } from '../utilities/miscHooks.js';
+import Tooltip from '../components/Tooltip.js';
 import SubmitForm from '../components/SubmitForm.js';
 import throttle from "lodash/throttle";
 
@@ -54,6 +53,7 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 	useEffect(() => {
 		listFilter()
 	}, [searchValue, familyRun, bailFund])
+
 	useEffect(() => {
 		let delayedScroll = setTimeout(() => {
 			panelRef.current.scrollTop = 0;
@@ -74,11 +74,6 @@ export default function ListPanel({data, handleListSelection, listOpen, setListO
 				<div className={styles.blackBar}/>
 				<div className="xPosition mobileClose stickyFloat cursorPointer greyHaze" onClick={() => setListOpen(false)}>
 					✕
-					{/*<Image
-						src={'/icons/x.svg'}
-						width={20}
-						height={20}
-					/>*/}
 				</div>
 				<SwitchTransition>
     				<CSSTransition 

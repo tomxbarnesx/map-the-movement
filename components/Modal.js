@@ -36,7 +36,7 @@ export default function Modal({modal, setModal, children}) {
 	       		classNames="fade-in"
 	       	>
 	       		<div className={styles.modalPanel}>
-		       		<div className="xPosition mobileClose nonFixed cursorPointer" onClick={() => setModal(false)}>
+		       		<div className="xPosition lowerX mobileClose nonFixed cursorPointer" onClick={() => setModal(false)}>
 						✕
 						{/*<Image
 							src={'/icons/x.svg'}

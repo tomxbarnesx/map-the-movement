@@ -5,11 +5,6 @@ import Tooltip from '../components/Tooltip.js';
 import { useTooltip } from '../utilities/miscHooks.js';
 import styles from '../styles/Modal.module.css';
 
-// import Twitter from '../../../images/socials/twitter.svg';
-// import Facebook from '../../../images/socials/facebook.svg';
-// import Instagram from '../../../images/socials/instagram.svg';
-// import Link from '../../../images/socials/link.svg';
-
 export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 	const [copied, setCopied] = useState(false);
 	
@@ -76,11 +71,6 @@ export function ShareContents({icons, addStyles, options, setShareUnfold}) {
 		<div style={addStyles} className={`${styles.shareModule} flex flex-row space-around align-center`}>
 			<div className={`${styles.modalIcon} cursorPointer greyHaze`} onClick={() => setShareUnfold(false)}>
 				✕
-				{/*<Image
-					src={'/icons/x.svg'}
-					width={20}
-					height={20}
-				/>*/}
 			</div>
 			<SwitchTransition>
 				<CSSTransition 

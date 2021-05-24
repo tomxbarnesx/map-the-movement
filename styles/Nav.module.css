@@ -11,12 +11,12 @@
 }
 
 .navLogo {
-	z-index: 1000;
 	width: 100%;
 	position: fixed;
 	top: 0;
 	width: max-content;
-	padding-right: 1em;
+	padding-right: 2em;
+	z-index: 99999;
 }
 
 .navContainer h1 {
@@ -52,6 +52,7 @@
 	pointer-events: none;
 	z-index: 20;
 	background-color: black;
+	z-index: 99999;
 }
 
 .reveal {
@@ -70,7 +71,7 @@
 	height: 3em;
     right: 0;
 	top: 0;
-	z-index: 20;
+	z-index: 99999;
 }
 
 .top, .middle{
@@ -234,6 +235,9 @@
 	}
 	.navLogo {
 		background-color: black;
+		font-size: .65em;
+		padding-left: 1em;
+		min-width: 12em;
 	}
 }
 

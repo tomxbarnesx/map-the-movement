@@ -39,10 +39,12 @@ const Panel = ({data, setActive, cyclePanels}) => {
 				setTwitterState(false); 
 			}
 		}
+		console.log(data)
 	}, [data])
 
 	const socialArray = ["url", "fb", "twitter", "instagram"];
 	const orgColor = colorBank((data) ? data.metadata.orgcolor : 'white')
+
 	return (
 		<div style={{border: `8px double ${orgColor}`}} className={styles.container}>
 			{
@@ -50,11 +52,6 @@ const Panel = ({data, setActive, cyclePanels}) => {
 					<>
 						<div className="xPosition mobileClose cursorPointer greyHaze" onClick={() => setActive(null)}>
 							✕
-							{/*<Image
-								src={'/icons/x.svg'}
-								width={20}
-								height={20}
-							/>*/}
 						</div>
 						<div className={styles.content}> 
 							<h1 style={{color: `${orgColor}`}}>{data.title}</h1>
@@ -93,31 +90,31 @@ const Panel = ({data, setActive, cyclePanels}) => {
 							</div>
 						</div>	
 						{
-							(!twitterState && data.metadata.twitter !== "" && data.metadata.twitter !== null) ? 
-								<div className="spinner">
-							        <div className="double-bounce1"></div>
-							        <div className="double-bounce2"></div>
-							    </div>
-							: null
-						}
-						{
 							(data.metadata.twitter !== "" && data.metadata.twitter !== null) ?
-								<div style={(twitterState) ? {opacity: "1"} : {opacity: "0"}} className="twitter-container">
+								<div className="twitter-container">
 									<Timeline
 									  dataSource={{
 									    sourceType: 'profile',
 									    screenName: data.metadata.twitter.split('/').pop()
 									  }}
 									  onLoad={() => setTwitterState(true)}
-									  renderError={(_err) => <p>Error loading timeline</p>}
+									  renderError={(_err) => <div className="coverUp">Error loading Twitter timeline. Please note this content may not be viewable in certain browsers’ private browsing mode.</div>}
 									  options={{
 									  	theme: "dark",
 									  	width: "100%",
 									  	chrome: "transparent",
-									  	backgroundColor: "black"
+									  	backgroundColor: "black",
 									  }}
 									/>
 								</div>
+							: null
+						}
+						{
+							(!twitterState && data.metadata.twitter !== "" && data.metadata.twitter !== null) ? 
+								<div className="spinner">
+							        <div className="double-bounce1"></div>
+							        <div className="double-bounce2"></div>
+							    </div>
 							: null
 						}
 					</>
@@ -126,8 +123,5 @@ const Panel = ({data, setActive, cyclePanels}) => {
 		</div>
 	)
 }
-/*<div className="twitter-container">
-									<a className="twitter-timeline" data-tweet-limit="21" data-theme="dark" data-chrome="noheader transparent" href={data.metadata.twitter}>Loading organization's latest tweets</a>			
-								</div>*/
-// RaleighPACT?ref_src=twsrc%5Etfw
+
 export default Panel;

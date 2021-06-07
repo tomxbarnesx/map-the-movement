@@ -9,4 +9,8 @@ module.exports = {
     COSMIC_READ_KEY: process.env.COSMIC_READ_KEY,
     COSMIC_WRITE_KEY: process.env.COSMIC_WRITE_KEY,
   },
+  i18n: {
+    locales: ['en-US'],
+    defaultLocale: 'en-US'
+  }
 }

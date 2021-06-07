@@ -11,7 +11,7 @@ function Layout({ children }){
 			<Head>
 				<link rel="icon" href="/logos/MTM_Logo.ico" />
 		        <meta charSet="utf-8" />
-		        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+		        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0,' />
         		<link rel="shortcut icon" href="/logos/MTM_Logo.ico" />
 				<meta property="og:image" content="https://map-the-movement-cdn.s3.amazonaws.com/map-the-movement-social-share2021.jpg" />
         		<meta property="og:image:type" content="image/jpeg" />
